@@ -8,21 +8,21 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
- * Entity class that represents a list in the database
+ * Entity class that represents a list of tasks in the database
  */
 
-@Entity(tableName = "list_table")
-public class List {
+@Entity(tableName = "taskList_table")
+public class TaskList {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     @NonNull
-    @ColumnInfo(name = "list")
-    private String mList;
+    @ColumnInfo(name = "taskList")
+    private String mTaskList;
 
-    public List(@NonNull String list) {
-        this.mList = list;
+    public TaskList(@NonNull String taskList) {
+        this.mTaskList = taskList;
     }
 
     /*
@@ -31,13 +31,13 @@ public class List {
      */
 
     @Ignore
-    public List(int id, @NonNull String list) {
+    public TaskList(int id, @NonNull String taskList) {
         this.id = id;
-        this.mList = list;
+        this.mTaskList = taskList;
     }
 
     public String getList() {
-        return this.mList;
+        return this.mTaskList;
     }
 
     public int getId() {return id;}
