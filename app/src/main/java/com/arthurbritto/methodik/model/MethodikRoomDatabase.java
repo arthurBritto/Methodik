@@ -77,7 +77,7 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
                     taskDao.insert(task);
                 }
             }
-            if(panelDao.getAnyList().length < 1){
+            if(panelDao.getAnyPanelList().length < 1){
                 for (int i = 0; i <= panelLists.length -1; i++) {
                     Panel panel = new Panel(panelLists[i]);
                     panelDao.insert(panel);

@@ -1,5 +1,6 @@
 package com.arthurbritto.methodik.model;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -26,15 +27,16 @@ public interface PanelDao {
     void deleteAll();
 
     @Delete
-    void deleteList(Panel panel);
+    void deletePanelList(Panel panel);
 
     @Query("SELECT * FROM panel LIMIT 1")
-    Panel[] getAnyList();
+    Panel[] getAnyPanelList();
 
     @Transaction
     @Query("SELECT * FROM panel ORDER BY panel ASC")
-    List<Panel> getAllPanelLists();
+    LiveData<List<Panel>> getAllPanelLists();
 
     @Update
     void update(Panel... panelLists);
+
 }
