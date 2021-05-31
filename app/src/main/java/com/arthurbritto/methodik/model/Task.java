@@ -1,28 +1,38 @@
 package com.arthurbritto.methodik.model;
 
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import static androidx.room.ForeignKey.CASCADE;
 
 /**
  * Entity class that represents a task on a list in the database
  */
 
-@Entity(tableName = "task_table")
+@Entity(foreignKeys = @ForeignKey(entity = Panel.class,
+        parentColumns = "panelId",
+        childColumns = "panelIdTask",
+        onDelete = CASCADE))
+
 public class Task {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int taskId;
 
     @NonNull
     @ColumnInfo(name = "task")
-    private String mTask;
+    private String task;
+
+    //TODO foreign key
+    @NonNull
+    @ColumnInfo(name = "panel_id_task")
+    private int panelIdTask;
 
     public Task(@NonNull String task) {
-        this.mTask = task;
+        this.task = task;
     }
 
     /*
@@ -31,18 +41,29 @@ public class Task {
      */
 
     @Ignore
-    public Task(int id, @NonNull String task) {
-        this.id = id;
-        this.mTask = task;
+    public Task(int taskId, @NonNull String task, int panelIdTask) {
+        this.taskId = taskId;
+        this.task = task;
+        this.panelIdTask = panelIdTask;
     }
 
     public String getTask() {
-        return this.mTask;
+        return this.task;
     }
 
-    public int getId() {return id;}
+    public int getId() {
+        return taskId;
+    }
 
     public void setId(int id) {
-        this.id = id;
+        this.taskId = taskId;
+    }
+
+    public int getPanelIdTaskId() {
+        return panelIdTask;
+    }
+
+    public void setTaskListId(int panelIdTask) {
+        this.panelIdTask = panelIdTask;
     }
 }

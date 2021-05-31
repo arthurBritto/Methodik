@@ -22,18 +22,21 @@ public interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Task task);
 
-    @Query("DELETE FROM task_table")
-    void deleteAll();
+    @Delete
+    void deleteAll(Task... tasks);
 
     @Delete
-    void deleteWord(Task task);
-
-    @Query("SELECT * FROM task_table LIMIT 1")
-    Task[] getAnyList();
-
-    @Query("SELECT * FROM task_table ORDER BY task ASC")
-    LiveData<List<Task>> getAllWords();
+    void deleteTask(Task task);
 
     @Update
     void update(Task... tasks);
+
+    @Query("SELECT * FROM task LIMIT 1")
+    Task[] getAnyTask();
+
+    @Query("SELECT * FROM task ORDER BY task ASC")
+    LiveData<List<Task>> getAllTasks();
+
+    @Query("SELECT * FROM task WHERE panel_id_task =:panel ORDER BY task ASC")
+    LiveData<List<Task>> getAllTasksbyPanelId(int panel);
 }
