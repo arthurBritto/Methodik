@@ -27,16 +27,16 @@ public interface PanelDao {
     void deleteAll();
 
     @Delete
-    void deletePanelList(Panel panel);
+    void deletePanel(Panel panel);
 
     @Query("SELECT * FROM panel LIMIT 1")
-    Panel[] getAnyPanelList();
+    Panel[] getAnyPanels();
 
     @Transaction
-    @Query("SELECT * FROM panel ORDER BY panel ASC")
-    LiveData<List<Panel>> getAllPanelLists();
+    @Query("SELECT * FROM panel ORDER BY name ASC")
+    LiveData<List<Panel>> getAllPanels();
 
     @Update
-    void update(Panel... panelLists);
+    void update(Panel... panels);
 
 }

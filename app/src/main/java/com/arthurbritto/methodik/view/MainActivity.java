@@ -97,7 +97,7 @@ import java.util.List;
                             Panel myPanel = adapter.getPanelListAtPosition(position);
                             Toast.makeText(MainActivity.this,
                                     getString(R.string.delete_word_preamble) + " " +
-                                            myPanel.getPanelListName(), Toast.LENGTH_LONG).show();
+                                            myPanel.getName(), Toast.LENGTH_LONG).show();
 
                             // Delete the word.
                             panelViewModel.deletePanelList(myPanel);
@@ -179,8 +179,8 @@ import java.util.List;
 
         public void launchUpdateWordActivity(Panel panel) {
             Intent intent = new Intent(this, MainActivityLists.class);
-            intent.putExtra(EXTRA_DATA_UPDATE_WORD, panel.getPanelListName());
-            intent.putExtra(EXTRA_DATA_ID, panel.getPanelId());
+            intent.putExtra(EXTRA_DATA_UPDATE_WORD, panel.getName());
+            intent.putExtra(EXTRA_DATA_ID, panel.getId());
             startActivityForResult(intent, UPDATE_MAIN_ACTIVITY_LISTS_REQUEST_CODE);
         }
     }

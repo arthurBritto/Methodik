@@ -1,4 +1,4 @@
- package com.arthurbritto.methodik.model;
+package com.arthurbritto.methodik.model;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -18,6 +18,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 public abstract class MethodikRoomDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
+
     public abstract PanelDao panelDao();
 
     private static MethodikRoomDatabase INSTANCE;
@@ -43,10 +44,10 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
     // In this case, use PopulateDbAsync to populate the database
     // with the initial data set if the database has no entries.
     private static RoomDatabase.Callback sRoomDatabaseCallback =
-            new RoomDatabase.Callback(){
+            new RoomDatabase.Callback() {
 
                 @Override
-                public void onOpen (@NonNull SupportSQLiteDatabase db){
+                public void onOpen(@NonNull SupportSQLiteDatabase db) {
                     super.onOpen(db);
                     new PopulateDbAsync(INSTANCE).execute();
                 }
@@ -60,8 +61,8 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
         private final PanelDao panelDao;
 
         // Initial data set
-        private static String [] tasks = {"Exercises", "Study", "Clean the house", "Say Mom I love her", "100pushups, 100pullups, 10km",};
-        private static String [] panelLists = {"Week Meeting", "Week TODO"};
+        private static String[] tasks = {"Exercises", "Study", "Clean the house", "Say Mom I love her", "100pushups, 100pullups, 10km",};
+        private static String[] panels = {"Week Meeting", "Week TODO"};
 
         PopulateDbAsync(MethodikRoomDatabase db) {
             taskDao = db.taskDao();
@@ -77,13 +78,12 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
                     taskDao.insert(task);
                 }
             }
-            if(panelDao.getAnyPanelList().length < 1){
-                for (int i = 0; i <= panelLists.length -1; i++) {
-                    Panel panel = new Panel(panelLists[i]);
+            if (panelDao.getAnyPanels().length < 1) {
+                for (int i = 0; i <= panels.length - 1; i++) {
+                    Panel panel = new Panel(panels[i]);
                     panelDao.insert(panel);
                 }
             }
-
             return null;
         }
     }

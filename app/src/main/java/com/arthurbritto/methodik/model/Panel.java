@@ -1,7 +1,6 @@
 package com.arthurbritto.methodik.model;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -14,36 +13,38 @@ import androidx.room.PrimaryKey;
 public class Panel {
 
     @PrimaryKey(autoGenerate = true)
-    private int panelId;
+    private int id;
 
     @NonNull
-    @ColumnInfo(name = "panel")
-    private String listName;
+    private String name;
 
-    public Panel(@NonNull String listName) {
-        this.listName = listName;
+    public Panel(@NonNull String name) {
+        this.name = name;
     }
 
     /*
      * This constructor is annotated using @Ignore, because Room
      * expects only one constructor by default in an entity class.
      */
-
     @Ignore
-    public Panel(int panelId, @NonNull String listName) {
-        this.panelId = panelId;
-        this.listName = listName;
-    }
-
-    public String getListName() {
-        return this.listName;
+    public Panel(int id, @NonNull String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {
-        return panelId;
+        return id;
     }
 
     public void setId(int id) {
-        this.panelId = id;
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(@NonNull String name) {
+        this.name = name;
     }
 }

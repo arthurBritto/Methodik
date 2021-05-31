@@ -13,57 +13,57 @@ import static androidx.room.ForeignKey.CASCADE;
  */
 
 @Entity(foreignKeys = @ForeignKey(entity = Panel.class,
-        parentColumns = "panelId",
-        childColumns = "panelIdTask",
+        parentColumns = "panel_id",
+        childColumns = "id",
         onDelete = CASCADE))
-
 public class Task {
 
     @PrimaryKey(autoGenerate = true)
-    private int taskId;
+    private int id;
 
     @NonNull
-    @ColumnInfo(name = "task")
-    private String task;
+    private String name;
 
-    //TODO foreign key
     @NonNull
-    @ColumnInfo(name = "panel_id_task")
-    private int panelIdTask;
+    @ColumnInfo(name = "panel_id")
+    private int panelId;
 
-    public Task(@NonNull String task) {
-        this.task = task;
+    public Task(@NonNull String name) {
+        this.name  = name;
     }
 
     /*
      * This constructor is annotated using @Ignore, because Room
      * expects only one constructor by default in an entity class.
      */
-
     @Ignore
-    public Task(int taskId, @NonNull String task, int panelIdTask) {
-        this.taskId = taskId;
-        this.task = task;
-        this.panelIdTask = panelIdTask;
-    }
-
-    public String getTask() {
-        return this.task;
+    public Task(int id, @NonNull String name, int panelId) {
+        this.id = id;
+        this.name = name;
+        this.panelId = panelId;
     }
 
     public int getId() {
-        return taskId;
+        return id;
     }
 
     public void setId(int id) {
-        this.taskId = taskId;
+        this.id = id;
     }
 
-    public int getPanelIdTaskId() {
-        return panelIdTask;
+    public String getName() {
+        return this.name;
     }
 
-    public void setTaskListId(int panelIdTask) {
-        this.panelIdTask = panelIdTask;
+    public void setName(@NonNull String name) {
+        this.name = name;
+    }
+
+    public int getPanelId() {
+        return panelId;
+    }
+
+    public void setPanelId(int panelId) {
+        this.panelId = panelId;
     }
 }

@@ -15,27 +15,27 @@ import java.util.List;
  * Adapter for the RecyclerView that displays a Panel of lists.
  */
 
-public class PanelListAdapter extends RecyclerView.Adapter<PanelListAdapter.PanelViewHolder> {
+public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHolder> {
 
-    private final LayoutInflater mInflater;
-    private List<Panel> lists; // Cached copy of lists
+    private final LayoutInflater inflater;
+    private List<Panel> panels; // Cached copy of panels
     private static ClickListener clickListener;
 
-    PanelListAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
+    PanelAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
     }
 
     @Override
     public PanelViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        View itemView = inflater.inflate(R.layout.recyclerview_item, parent, false);
         return new PanelViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(PanelViewHolder holder, int position) {
-        if (lists != null) {
-            Panel current = lists.get(position);
-            holder.panelItemView.setText(current.getListName());
+        if (panels != null) {
+            Panel current = panels.get(position);
+            holder.panelItemView.setText(current.getName());
         } else {
             // Covers the case of data not being ready yet.
             holder.panelItemView.setText(R.string.no_word);
@@ -45,8 +45,8 @@ public class PanelListAdapter extends RecyclerView.Adapter<PanelListAdapter.Pane
     /**
      * Associates a panel of lists with this adapter
      */
-    void setPanelLists(List<Panel> panelLists) {
-        lists = panelLists;
+    void setPanels(List<Panel> panels) {
+        this.panels = panels;
         notifyDataSetChanged();
     }
 
@@ -56,8 +56,8 @@ public class PanelListAdapter extends RecyclerView.Adapter<PanelListAdapter.Pane
      */
     @Override
     public int getItemCount() {
-        if (lists != null)
-            return lists.size();
+        if (panels != null)
+            return panels.size();
         else return 0;
     }
 
@@ -69,8 +69,8 @@ public class PanelListAdapter extends RecyclerView.Adapter<PanelListAdapter.Pane
      * @param position The position of the word in the RecyclerView
      * @return The word at the given position
      */
-    public Panel getPanelListAtPosition(int position) {
-        return lists.get(position);
+    public Panel getPanelAtPosition(int position) {
+        return panels.get(position);
     }
 
     class PanelViewHolder extends RecyclerView.ViewHolder {
@@ -89,7 +89,7 @@ public class PanelListAdapter extends RecyclerView.Adapter<PanelListAdapter.Pane
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
-        PanelListAdapter.clickListener = clickListener;
+        PanelAdapter.clickListener = clickListener;
     }
 
     public interface ClickListener {
