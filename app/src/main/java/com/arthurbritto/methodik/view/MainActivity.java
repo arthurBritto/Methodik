@@ -1,19 +1,11 @@
 package com.arthurbritto.methodik.view;
 
-/*****
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 import android.widget.Toolbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.arthurbritto.methodik.R;
 
-    /**
+/**
      * This class displays a Panel of the lists in a RecyclerView.
      * The lists are saved in a Room database. The layout for this activity also
      * displays a FAB that allows users to start the NewWordActivity to add new
@@ -21,7 +13,7 @@ import com.arthurbritto.methodik.R;
      * Users can delete a list by swiping it away, or delete all through the Options
      * menu. Whenever a new list is added, deleted, or updated, the RecyclerView
      * showing the Panel of words automatically updates.
-     *
+     */
     public class MainActivity extends AppCompatActivity {
 
         public static final int MAIN_ACTIVITY_LISTS_REQUEST_CODE = 1;
@@ -147,7 +139,7 @@ import com.arthurbritto.methodik.R;
          * @param resultCode indicates success or failure
          * @param data The Intent sent back from the NewWordActivity,
          *             which includes the word that the user entered
-         *
+         */
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
 
@@ -180,4 +172,3 @@ import com.arthurbritto.methodik.R;
     }
 
 }
-****/

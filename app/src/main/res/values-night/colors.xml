@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#121212</color>
+    <color name="colorPrimaryLight">#FFC229</color>
+    <color name="colorPrimaryDark">@android:color/black</color>
+    <color name="colorAccent">#FFFF9800</color>
+    <color name="colorTextPrimary">#000000</color>
+    <color name="colorScreenBackground">#151515</color>
+    <color name="colorTextHint">#E0E0E0</color>
+</resources>
