@@ -32,11 +32,11 @@ import java.util.List;
 
         public static final int MAIN_ACTIVITY_LISTS_REQUEST_CODE = 1;
         public static final int UPDATE_MAIN_ACTIVITY_LISTS_REQUEST_CODE = 2;
-        public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
-        public static final int UPDATE_WORD_ACTIVITY_REQUEST_CODE = 2;
+        public static final int NEW_PANEL_ACTIVITY_REQUEST_CODE = 1;
+        public static final int UPDATE_MAIN_ACTIVITY_REQUEST_CODE = 2;
 
-        public static final String EXTRA_DATA_UPDATE_WORD = "extra_word_to_be_updated";
-        public static final String EXTRA_DATA_ID = "extra_data_id";
+        public static final String EXTRA_DATA_UPDATE_PANEL = "extra_panel_to_be_updated";
+        public static final String EXTRA_DATA_PANEL_ID = "extra_panel_data_id";
 
         private PanelViewModel panelViewModel;
 
@@ -50,7 +50,7 @@ import java.util.List;
 
             // Set up the RecyclerView.
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
-            final PanelListAdapter adapter = new PanelListAdapter(this);
+            final PanelAdapter adapter = new PanelAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -62,7 +62,7 @@ import java.util.List;
                 @Override
                 public void onChanged(@Nullable final List<Panel> panelLists) {
                     // Update the cached copy of the words in the adapter.
-                    adapter.setPanelLists(panelLists);
+                    adapter.setPanels(panelLists);
                 }
             });
 
@@ -71,8 +71,8 @@ import java.util.List;
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this, NewPanelListActivity.class);
-                    startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+                    Intent intent = new Intent(MainActivity.this, PanelActivity.class);
+                    startActivityForResult(intent, NEW_PANEL_ACTIVITY_REQUEST_CODE);
                 }
             });
 
@@ -94,9 +94,9 @@ import java.util.List;
                         // delete that word from the database.
                         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                             int position = viewHolder.getAdapterPosition();
-                            Panel myPanel = adapter.getPanelListAtPosition(position);
+                            Panel myPanel = adapter.getPanelAtPosition(position);
                             Toast.makeText(MainActivity.this,
-                                    getString(R.string.delete_word_preamble) + " " +
+                                    getString(R.string.delete_preamble) + " " +
                                             myPanel.getName(), Toast.LENGTH_LONG).show();
 
                             // Delete the word.
@@ -106,11 +106,11 @@ import java.util.List;
             // Attach the item touch helper to the recycler view.
             helper.attachToRecyclerView(recyclerView);
 
-            adapter.setOnItemClickListener(new PanelListAdapter.ClickListener()  {
+            adapter.setOnItemClickListener(new PanelAdapter.ClickListener()  {
 
                 @Override
                 public void onItemClick(View v, int position) {
-                    Panel panel = adapter.getPanelListAtPosition(position);
+                    Panel panel = adapter.getPanelAtPosition(position);
                     launchUpdateWordActivity(panel);
                 }
             });
@@ -145,25 +145,24 @@ import java.util.List;
         }
 
         /**
-         * When the user enters a new word in the NewWordActivity,
+         * When the user enters a new word in the PanelActivity,
          * that activity returns the result to this activity.
          * If the user entered a new word, save it in the database.
-
          * @param requestCode ID for the request
          * @param resultCode indicates success or failure
          * @param data The Intent sent back from the NewWordActivity,
-         *             which includes the word that the user entered
-         */
+         * which includes the word that the user entered
+         **/
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
 
             if (requestCode == MAIN_ACTIVITY_LISTS_REQUEST_CODE && resultCode == RESULT_OK) {
-                Panel panel = new Panel(data.getStringExtra(MainActivityLists.EXTRA_REPLY));
+                Panel panel = new Panel(data.getStringExtra(PanelActivity.EXTRA_REPLY));
                 // Save the data.
                 panelViewModel.insert(panel);
             } else if (requestCode == UPDATE_MAIN_ACTIVITY_LISTS_REQUEST_CODE && resultCode == RESULT_OK) {
-                String panel_data = data.getStringExtra(MainActivityLists.EXTRA_REPLY);
-                int id = data.getIntExtra(MainActivityLists.EXTRA_REPLY_ID, -1);
+                String panel_data = data.getStringExtra(PanelActivity.EXTRA_REPLY);
+                int id = data.getIntExtra(PanelActivity.EXTRA_REPLY_ID, -1);
 
                 if (id != -1) {
                     panelViewModel.update(new Panel(id, panel_data));
@@ -178,11 +177,11 @@ import java.util.List;
         }
 
         public void launchUpdateWordActivity(Panel panel) {
-            Intent intent = new Intent(this, MainActivityLists.class);
-            intent.putExtra(EXTRA_DATA_UPDATE_WORD, panel.getName());
-            intent.putExtra(EXTRA_DATA_ID, panel.getId());
+            Intent intent = new Intent(this, PanelActivity.class);
+            intent.putExtra(EXTRA_DATA_UPDATE_PANEL, panel.getName());
+            intent.putExtra(EXTRA_DATA_PANEL_ID, panel.getId());
             startActivityForResult(intent, UPDATE_MAIN_ACTIVITY_LISTS_REQUEST_CODE);
         }
-    }
+
 
 }

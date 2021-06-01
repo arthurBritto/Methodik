@@ -38,7 +38,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
             holder.panelItemView.setText(current.getName());
         } else {
             // Covers the case of data not being ready yet.
-            holder.panelItemView.setText(R.string.no_word);
+            holder.panelItemView.setText(R.string.no_panel);
         }
     }
 

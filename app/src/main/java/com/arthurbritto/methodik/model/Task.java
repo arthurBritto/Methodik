@@ -3,19 +3,18 @@ package com.arthurbritto.methodik.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import static androidx.room.ForeignKey.CASCADE;
 
 /**
  * Entity class that represents a task on a list in the database
  */
 
-@Entity(foreignKeys = @ForeignKey(entity = Panel.class,
-        parentColumns = "panel_id",
-        childColumns = "id",
-        onDelete = CASCADE))
+/*@Entity(foreignKeys = @ForeignKey(entity = Panel.class,
+        parentColumns = "id",
+        childColumns = "panel_id",
+        onDelete = CASCADE))*/
+    @Entity(tableName = "task")
 public class Task {
 
     @PrimaryKey(autoGenerate = true)

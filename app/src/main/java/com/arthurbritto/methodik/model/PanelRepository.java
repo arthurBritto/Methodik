@@ -26,7 +26,7 @@ public class PanelRepository {
     public PanelRepository(Application application) {
         MethodikRoomDatabase db = MethodikRoomDatabase.getDatabase(application);
         panelDao = db.panelDao();
-        allLists= panelDao.getAllPanelLists();
+        allLists= panelDao.getAllPanels();
     }
 
     public LiveData<List<Panel>> getAllLists() {
@@ -101,7 +101,7 @@ public class PanelRepository {
 
         @Override
         protected Void doInBackground(final Panel... params) {
-            asyncTaskDao.deletePanelList(params[0]);
+            asyncTaskDao.deletePanel(params[0]);
             return null;
         }
     }
