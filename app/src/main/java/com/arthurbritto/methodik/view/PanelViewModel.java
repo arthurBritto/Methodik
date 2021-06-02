@@ -25,7 +25,7 @@ public class PanelViewModel extends AndroidViewModel {
 
     public void deleteAll(){repository.deleteAllPanelLists();}
 
-    public void deletePanelList(Panel panel){repository.deletePanelList(panel);}
+    public void deletePanel(Panel panel){repository.deletePanelList(panel);}
 
     public void update(Panel panel){repository.update(panel);}
 

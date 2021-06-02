@@ -79,12 +79,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         private PanelViewHolder(View itemView) {
             super(itemView);
             panelItemView = itemView.findViewById(R.id.textView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clickListener.onItemClick(view, getAdapterPosition());
-                }
-            });
+            itemView.setOnClickListener(view -> clickListener.onItemClick(view, getAdapterPosition()));
         }
     }
 
