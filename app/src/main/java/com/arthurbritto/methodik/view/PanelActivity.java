@@ -29,7 +29,6 @@ public class PanelActivity extends AppCompatActivity {
     public static final String EXTRA_DATA_ID = "extra_data_id";
 
     private EditText editPanelView;
-    private PanelViewModel panelViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

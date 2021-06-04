@@ -27,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_PANEL_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_PANEL_ACTIVITY_REQUEST_CODE = 2;
+    public static final int SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE = 3;
+    public static final int CREATE_PANEL_ACTIVITY_REQUEST_CODE = 4;
 
-    public static final String EXTRA_DATA_UPDATE_PANEL = "extra_word_to_be_updated";
+    public static final String EXTRA_DATA_NAME = "extra_data_name";
     public static final String EXTRA_DATA_ID = "extra_data_id";
     public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
     public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            // Set up the WordViewModel.
+        // Set up the PanelViewModel.
         panelViewModel = ViewModelProviders.of(this).get(PanelViewModel.class);
         // Get all the words from the database
         // and associate them to the adapter.
@@ -101,9 +103,18 @@ public class MainActivity extends AppCompatActivity {
         // Attach the item touch helper to the recycler view.
         helper.attachToRecyclerView(recyclerView);
 
-        adapter.setOnItemClickListener((v, position) -> {
-            Panel panel = adapter.getPanelAtPosition(position);
-            launchUpdatePanelActivity(panel);
+        adapter.setOnItemClickListener(new PanelAdapter.ClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Panel panel = adapter.getPanelAtPosition(position);
+                launchTaskListActivity(panel);
+            }
+
+            @Override
+            public void onItemLongClick(View v, int position) {
+                Panel panel = adapter.getPanelAtPosition(position);
+                launchPanelActivity(panel);
+            }
         });
     }
 
@@ -168,12 +179,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void launchUpdatePanelActivity(Panel panel) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(EXTRA_DATA_UPDATE_PANEL, panel.getName());
+    public void launchTaskListActivity(Panel panel) {
+        Intent intent = new Intent(this, TaskListActivity.class);
+        intent.putExtra(EXTRA_DATA_NAME, panel.getName());
+        intent.putExtra(EXTRA_DATA_ID, panel.getId());
+        startActivityForResult(intent, SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE);
+    }
+
+    public void launchPanelActivity(Panel panel) {
+        Intent intent = new Intent(this, PanelActivity.class);
+        intent.putExtra(EXTRA_DATA_NAME, panel.getName());
         intent.putExtra(EXTRA_DATA_ID, panel.getId());
         startActivityForResult(intent, UPDATE_PANEL_ACTIVITY_REQUEST_CODE);
     }
-
-
 }

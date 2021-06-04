@@ -63,7 +63,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
 
     /**
      * Gets the word at a given position.
-     * This method is useful for identifying which word
+     * This method is useful for identifying which panel
      * was clicked or swiped in methods that handle user events.
      *
      * @param position The position of the word in the RecyclerView
@@ -80,6 +80,10 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
             super(itemView);
             panelItemView = itemView.findViewById(R.id.textView);
             itemView.setOnClickListener(view -> clickListener.onItemClick(view, getAdapterPosition()));
+            itemView.setOnLongClickListener(view -> {
+                clickListener.onItemLongClick(view, getAdapterPosition());
+                return true;
+            });
         }
     }
 
@@ -89,6 +93,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
 
     public interface ClickListener {
         void onItemClick(View v, int position);
+        void onItemLongClick(View v, int position);
     }
 
 }
