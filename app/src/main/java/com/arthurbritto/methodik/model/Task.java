@@ -3,19 +3,22 @@ package com.arthurbritto.methodik.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import static androidx.room.ForeignKey.CASCADE;
 
 /**
  * Entity class that represents a task on a list in the database
  */
 
-/*@Entity(foreignKeys = @ForeignKey(entity = Panel.class,
+@Entity(tableName = "task",
+        foreignKeys = {@ForeignKey(entity = Panel.class,
         parentColumns = "id",
         childColumns = "panel_id",
-        onDelete = CASCADE))*/
-    @Entity(tableName = "task")
-    public class Task {
+        onDelete = CASCADE)})
+public class Task {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -28,7 +31,7 @@ import androidx.room.PrimaryKey;
     private int panelId;
 
     public Task(@NonNull String name) {
-        this.name  = name;
+        this.name = name;
     }
 
     /*
@@ -40,6 +43,10 @@ import androidx.room.PrimaryKey;
         this.id = id;
         this.name = name;
         this.panelId = panelId;
+    }
+
+    @Ignore
+    public Task(int id, String task_data) {
     }
 
     public int getId() {

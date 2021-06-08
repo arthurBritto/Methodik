@@ -146,14 +146,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * When the user enters a new word in the NewWordActivity,
+     * When the user enters a new panel in the PanelActivityAdd,
      * that activity returns the result to this activity.
-     * If the user entered a new word, save it in the database.
+     * If the user entered a new panel, save it in the database.
 
      * @param requestCode ID for the request
      * @param resultCode indicates success or failure
-     * @param data The Intent sent back from the NewWordActivity,
-     *             which includes the word that the user entered
+     * @param data The Intent sent back from the panelActivityAdd,
+     *             which includes the panel that the user entered
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

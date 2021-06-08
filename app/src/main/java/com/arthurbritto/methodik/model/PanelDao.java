@@ -36,6 +36,10 @@ public interface PanelDao {
     @Query("SELECT * FROM panel ORDER BY name ASC")
     LiveData<List<Panel>> getAllPanels();
 
+    @Transaction
+    @Query("SELECT * FROM Task")
+    public List<TasksAndPanels> getTaskAndPanels();
+
     @Update
     void update(Panel... panels);
 

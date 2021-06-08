@@ -41,7 +41,7 @@ import java.util.List;
             new updateTaskAsyncTask(taskDao).execute(task);
         }
 
-        public void deleteAllTaskes()  {
+        public void deleteAllTasks()  {
             new deleteAllTasksAsyncTask(taskDao).execute();
         }
 

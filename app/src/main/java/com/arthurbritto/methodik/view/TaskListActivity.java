@@ -85,8 +85,8 @@ public class TaskListActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    // When the use swipes a word,
-                    // delete that word from the database.
+                    // When the use swipes a task,
+                    // delete that task from the database.
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                         int position = viewHolder.getAdapterPosition();
                         Task myTask = adapter.getTaskAtPosition(position);
@@ -140,20 +140,20 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     /**
-     * When the user enters a new word in the NewWordActivity,
+     * When the user enters a new task in the TaskActivityAdd,
      * that activity returns the result to this activity.
-     * If the user entered a new word, save it in the database.
+     * If the user entered a new task, save it in the database.
      *
      * @param requestCode ID for the request
      * @param resultCode  indicates success or failure
-     * @param data        The Intent sent back from the NewWordActivity,
-     *                    which includes the word that the user entered
+     * @param data        The Intent sent back from the TaskActivityAdd,
+     *                    which includes the task that the user entered
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Task task = new Task(data.getStringExtra(TaskActivityEdit.EXTRA_REPLY));
+            Task task = new Task(data.getStringExtra(TaskActivityAdd.EXTRA_REPLY));
             // Save the data.
             taskViewModel.insert(task);
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {

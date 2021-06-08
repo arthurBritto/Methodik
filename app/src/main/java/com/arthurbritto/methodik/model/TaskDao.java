@@ -30,12 +30,12 @@ public interface TaskDao {
     @Update
     void update(Task... tasks);
 
-    @Query("SELECT * FROM task LIMIT 1")
-    Task[] getAnyTask();
+    @Query("SELECT * FROM task /*WHERE panel_id=:panelId*/ LIMIT 1")
+    Task[] getAnyTask(/*int panelId*/);
 
     @Query("SELECT * FROM task ORDER BY name ASC")
     LiveData<List<Task>> getAllTasks();
 
-    @Query("SELECT * FROM task WHERE panel_id =:panel ORDER BY name ASC")
-    LiveData<List<Task>> getAllTasksbyPanelId(int panel);
+    @Query("SELECT * FROM task WHERE panel_id =:panelId ORDER BY name ASC")
+    LiveData<List<Task>> getAllTasksByPanelId(int panelId);
 }
