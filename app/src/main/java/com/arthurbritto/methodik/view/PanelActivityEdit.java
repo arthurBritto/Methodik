@@ -6,10 +6,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.arthurbritto.methodik.R;
+
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_ID;
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_NAME;
 
 /**
  * This class displays a screen where the user enters a new Panel or edit one.
@@ -17,23 +18,17 @@ import com.arthurbritto.methodik.R;
  * (MainActivity), which then stores the new Panel and updates the list of
  * displayed panels.
  */
-public class PanelActivity extends AppCompatActivity {
+public class PanelActivityEdit extends AppCompatActivity {
 
-    public static final int NEW_PANEL_ACTIVITY_REQUEST_CODE = 1;
-    public static final int UPDATE_PANEL_ACTIVITY_REQUEST_CODE = 2;
-
-    public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
-    public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";
-
-    public static final String EXTRA_DATA_UPDATE_PANEL = "extra_word_to_be_updated";
-    public static final String EXTRA_DATA_ID = "extra_data_id";
+    public static final String EXTRA_REPLY = "com.arthurbritto.methodik.REPLY" ;
+    public static final String EXTRA_REPLY_ID = "com.arthurbritto.methodik.REPLY_ID";
 
     private EditText editPanelView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_panel);
+        setContentView(R.layout.activity_panel_edit);
 
         editPanelView = findViewById(R.id.edit_panel);
         int id = -1;
@@ -42,7 +37,7 @@ public class PanelActivity extends AppCompatActivity {
 
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
-            String panel = extras.getString(EXTRA_DATA_UPDATE_PANEL, "");
+            String panel = extras.getString(EXTRA_DATA_NAME, "");
             if (!panel.isEmpty()) {
                 editPanelView.setText(panel);
                 editPanelView.setSelection(panel.length());

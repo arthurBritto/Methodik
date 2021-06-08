@@ -2,7 +2,7 @@
     <string name="app_name">Methodik</string>
     <string name="action_settings">Settings</string>
 
-    <string name="hint_edit">List…</string>
+    <string name="hint_edit">New List…</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Not saved because it is empty.</string>
     <string name="clear_all_lists">Clear all Lists</string>
@@ -15,4 +15,9 @@
     <string name="action_favorites">Favorites</string>
     <string name="action_status">Status</string>
     <string name="settings">Settings</string>
+    <string name="title_add_panel">Add Your New List Below</string>
+    <string name="title_edit_panel">Edit Your Panel Below</string>
+    <string name="title_add_task">Add Your New Task Below</string>
+    <string name="title_edit_task">Edit Your Task Below</string>
+    <string name="no_task">No task</string>
 </resources>

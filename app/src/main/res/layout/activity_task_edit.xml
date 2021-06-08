@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorScreenBackground"
+    android:orientation="vertical"
+    android:padding="24dp">
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/title_edit_task"
+        android:textSize="@dimen/title"
+        android:textColor="@color/colorPrimaryLight"
+        />
+
+    <EditText
+        android:id="@+id/edit_panel"
+        style="@style/text_view_style"
+        android:inputType="textAutoComplete"/>
+
+    <Button
+        android:id="@+id/button_save"
+        style="@style/button_style"
+        android:text="@string/button_save" />
+</LinearLayout>

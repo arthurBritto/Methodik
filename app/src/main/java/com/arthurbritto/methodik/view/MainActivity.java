@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int NEW_PANEL_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_PANEL_ACTIVITY_REQUEST_CODE = 2;
     public static final int SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE = 3;
-    public static final int CREATE_PANEL_ACTIVITY_REQUEST_CODE = 4;
 
     public static final String EXTRA_DATA_NAME = "extra_data_name";
     public static final String EXTRA_DATA_ID = "extra_data_id";
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the PanelViewModel.
         panelViewModel = ViewModelProviders.of(this).get(PanelViewModel.class);
-        // Get all the words from the database
+        // Get all the lists from the database
         // and associate them to the adapter.
         panelViewModel.getAllLists().observe(this, new Observer<List<Panel>>() {
             @Override
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PanelActivity.class);
+                Intent intent = new Intent(MainActivity.this, PanelActivityAdd.class);
                 startActivityForResult(intent, NEW_PANEL_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -160,12 +159,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Panel panel = new Panel(data.getStringExtra(PanelActivity.EXTRA_REPLY));
+            Panel panel = new Panel(data.getStringExtra(PanelActivityEdit.EXTRA_REPLY));
             // Save the data.
             panelViewModel.insert(panel);
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            String panel_data = data.getStringExtra(PanelActivity.EXTRA_REPLY);
-            int id = data.getIntExtra(PanelActivity.EXTRA_REPLY_ID, -1);
+            String panel_data = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
+            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, -1);
 
             if (id != -1) {
                 panelViewModel.update(new Panel(id, panel_data));
@@ -187,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchPanelActivity(Panel panel) {
-        Intent intent = new Intent(this, PanelActivity.class);
+        Intent intent = new Intent(this, PanelActivityEdit.class);
         intent.putExtra(EXTRA_DATA_NAME, panel.getName());
         intent.putExtra(EXTRA_DATA_ID, panel.getId());
         startActivityForResult(intent, UPDATE_PANEL_ACTIVITY_REQUEST_CODE);

@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey;
         childColumns = "panel_id",
         onDelete = CASCADE))*/
     @Entity(tableName = "task")
-public class Task {
+    public class Task {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

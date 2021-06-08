@@ -52,7 +52,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
 
     /**
      * getItemCount() is called many times, and when it is first called,
-     * mWords has not been updated (means initially, it's null, and we can't return null).
+     * panels has not been updated (means initially, it's null, and we can't return null).
      */
     @Override
     public int getItemCount() {
@@ -62,12 +62,12 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
     }
 
     /**
-     * Gets the word at a given position.
+     * Gets the panel at a given position.
      * This method is useful for identifying which panel
      * was clicked or swiped in methods that handle user events.
      *
-     * @param position The position of the word in the RecyclerView
-     * @return The word at the given position
+     * @param position The position of the panel in the RecyclerView
+     * @return The panel at the given position
      */
     public Panel getPanelAtPosition(int position) {
         return panels.get(position);

@@ -5,12 +5,21 @@ android:layout_height="match_parent"
 android:background="@color/colorScreenBackground"
 android:orientation="vertical"
 android:padding="24dp">
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/title_edit_panel"
+        android:textSize="@dimen/title"
+        android:textColor="@color/colorPrimaryLight"
+        />
 
 <EditText
     android:id="@+id/edit_panel"
     style="@style/text_view_style"
-    android:hint="@string/hint_edit"
-    android:inputType="textAutoComplete" />
+    android:inputType="textAutoComplete"/>
 
 <Button
     android:id="@+id/button_save"
