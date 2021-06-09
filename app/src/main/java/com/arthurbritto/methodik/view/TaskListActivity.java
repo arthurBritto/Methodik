@@ -7,9 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +27,7 @@ public class TaskListActivity extends AppCompatActivity {
 
     public static final String EXTRA_DATA_NAME = "extra_data_name";
     public static final String EXTRA_DATA_ID = "extra_data_id";
+    public static final String EXTRA_DATA_UPDATE_TASK = "extra_data_update_task";
     public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
     public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";
 
@@ -37,7 +36,7 @@ public class TaskListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_list);
+        setContentView(R.layout.activity_main);
 
         // Set up the RecyclerView.
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -49,12 +48,9 @@ public class TaskListActivity extends AppCompatActivity {
         taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
         // Get all the tasks from the database
         // and associate them to the adapter.
-        taskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(@Nullable final List<Task> tasks) {
-                // Update the cached copy of the tasks in the adapter.
-                adapter.setTasks(tasks);
-            }
+        taskViewModel.getAllTasks().observe(this, (List<Task> tasks) -> {
+            // Update the cached copy of the tasks in the adapter.
+            adapter.setTasks(tasks);
         });
 
         // Floating action button setup
@@ -170,8 +166,8 @@ public class TaskListActivity extends AppCompatActivity {
 
     public void launchEditTaskActivity(Task task) {
         Intent intent = new Intent(this, TaskActivityEdit.class);
-        intent.putExtra(EXTRA_DATA_NAME, task.getName());
+        intent.putExtra(EXTRA_DATA_UPDATE_TASK, task.getName());
         intent.putExtra(EXTRA_DATA_ID, task.getId());
-        startActivityForResult(intent, SHOW_EDIT_TASK_ACTIVITY_REQUEST_CODE);
+        startActivityForResult(intent, UPDATE_TASK_ACTIVITY_REQUEST_CODE);
     }
 }

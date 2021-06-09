@@ -18,6 +18,8 @@ import com.arthurbritto.methodik.R;
 import com.arthurbritto.methodik.model.Panel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         panelViewModel = ViewModelProviders.of(this).get(PanelViewModel.class);
         // Get all the lists from the database
         // and associate them to the adapter.
-        panelViewModel.getAllLists().observe(this, panels -> {
+        panelViewModel.getAllLists().observe(this, (List<Panel> panels) -> {
             // Update the cached copy of the panels in the adapter.
             adapter.setPanels(panels);
         });
@@ -76,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    // When the use swipes a word,
-                    // delete that word from the database.
+                    // When the use swipes a panel,
+                    // delete that panel from the database.
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                         int position = viewHolder.getAdapterPosition();
                         Panel myPanel = adapter.getPanelAtPosition(position);
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Panel panel = new Panel(data.getStringExtra(PanelActivityEdit.EXTRA_REPLY));
+            Panel panel = new Panel(data.getStringExtra(PanelActivityAdd.EXTRA_REPLY));
             // Save the data.
             panelViewModel.insert(panel);
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {

@@ -14,7 +14,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  * with it happen through the ViewModels.
  */
 
-@Database(entities = {Panel.class, Task.class}, version = 4, exportSchema = false)
+@Database(entities = {Panel.class, Task.class}, version = 5, exportSchema = false)
 public abstract class MethodikRoomDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
@@ -78,6 +78,7 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
                 }
             }
             int panelId = 2; // Tasks in the fist panel, Week TODO
+
             if (taskDao.getAnyTask().length < 1) {
                 for (int i = 0; i <= tasks.length - 1; i++) {
                     Task task = new Task(tasks[i], panelId);
