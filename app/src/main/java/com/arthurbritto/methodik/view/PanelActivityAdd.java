@@ -13,8 +13,7 @@ import com.arthurbritto.methodik.R;
 /**
  * This class displays a screen where the user add a new Panel.
  * The PanelActivityAdd returns the entered Panel to the calling activity
- * (MainActivity), which then stores the new Panel and updates the list of
- * displayed panels.
+ * (MainActivity), which then stores the new Panel and updates the list.
  */
 public class PanelActivityAdd extends AppCompatActivity {
 

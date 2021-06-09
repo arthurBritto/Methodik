@@ -13,10 +13,9 @@ import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_NAME;
 
 /**
- * This class displays a screen where the user enters a new Panel or edit one.
- * The PanelActivity returns the entered Panel to the calling activity
- * (MainActivity), which then stores the new Panel and updates the list of
- * displayed panels.
+ * This class displays a screen where the user edit a Panel
+ * The PanelActivityEdit returns the entered Panel to the calling activity
+ * (MainActivity), which then stores the new Panel and updates the list.
  */
 public class PanelActivityEdit extends AppCompatActivity {
 
