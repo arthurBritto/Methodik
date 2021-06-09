@@ -30,6 +30,12 @@ public class Task {
     @ColumnInfo(name = "panel_id")
     private int panelId;
 
+    public Task(@NonNull String name, int panelId) {
+        this.name = name;
+        this.panelId = panelId;
+    }
+
+    @Ignore
     public Task(@NonNull String name) {
         this.name = name;
     }
