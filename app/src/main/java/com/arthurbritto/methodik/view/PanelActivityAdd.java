@@ -21,17 +21,17 @@ public class PanelActivityAdd extends AppCompatActivity {
     public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
     public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";
 
-    public static final String EXTRA_DATA_UPDATE_PANEL = "extra_word_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_PANEL = "extra_panel_to_be_updated";
     public static final String EXTRA_DATA_ID = "extra_data_id";
 
-    private EditText editPanelView;
+    private EditText addPanelView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_add);
 
-        editPanelView = findViewById(R.id.edit_panel);
+        addPanelView = findViewById(R.id.add_panel);
         int id = -1;
 
         final Bundle extras = getIntent().getExtras();
@@ -40,9 +40,9 @@ public class PanelActivityAdd extends AppCompatActivity {
         if (extras != null) {
             String panel = extras.getString(EXTRA_DATA_UPDATE_PANEL, "");
             if (!panel.isEmpty()) {
-                editPanelView.setText(panel);
-                editPanelView.setSelection(panel.length());
-                editPanelView.requestFocus();
+                addPanelView.setText(panel);
+                addPanelView.setSelection(panel.length());
+                addPanelView.requestFocus();
             }
         } // Otherwise, start with empty fields.
 
@@ -55,12 +55,12 @@ public class PanelActivityAdd extends AppCompatActivity {
             public void onClick(View view) {
                 // Create a new Intent for the reply.
                 Intent replyIntent = new Intent();
-                if (TextUtils.isEmpty(editPanelView.getText())) {
+                if (TextUtils.isEmpty(addPanelView.getText())) {
                     // No panel was entered, set the result accordingly.
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-                    // Get the new word that the user entered.
-                    String panel = editPanelView.getText().toString();
+                    // Get the new panel that the user entered.
+                    String panel = addPanelView.getText().toString();
                     // Put the new panel in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, panel);
                     if (extras != null && extras.containsKey(EXTRA_DATA_ID)) {

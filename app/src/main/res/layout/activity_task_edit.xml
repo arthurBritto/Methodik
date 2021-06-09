@@ -19,6 +19,7 @@
     <EditText
         android:id="@+id/edit_panel"
         style="@style/text_view_style"
+        android:hint="@string/hint_edit_task"
         android:inputType="textAutoComplete"/>
 
     <Button

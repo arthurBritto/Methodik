@@ -58,7 +58,7 @@ public class PanelActivityEdit extends AppCompatActivity {
                     // No panel was entered, set the result accordingly.
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-                    // Get the new word that the user entered.
+                    // Get the new panel that the user entered.
                     String panel = editPanelView.getText().toString();
                     // Put the new panel in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, panel);

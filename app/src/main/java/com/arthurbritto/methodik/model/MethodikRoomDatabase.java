@@ -14,13 +14,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  * with it happen through the ViewModels.
  */
 
-@Database(entities = {Panel.class, Task.class}, version = 9, exportSchema = false)
+@Database(entities = {Panel.class, Task.class}, version = 4, exportSchema = false)
 public abstract class MethodikRoomDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
-
     public abstract PanelDao panelDao();
-
     private static MethodikRoomDatabase INSTANCE;
 
     public static MethodikRoomDatabase getDatabase(final Context context) {
