@@ -14,7 +14,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  * with it happen through the ViewModels.
  */
 
-@Database(entities = {Panel.class, Task.class}, version = 5, exportSchema = false)
+@Database(entities = {Panel.class, Task.class}, version = 6, exportSchema = false)
 public abstract class MethodikRoomDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
@@ -60,7 +60,7 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
 
         // Initial data set
         private static String[] panels = {"Week Meeting", "Week TODO"};
-        private static String[] tasks = {"Exercises", "Study", "Clean the house", "Say Mom I love her", "100pushups, 100pullups, 10km",};
+        private static String[] tasks = {"Exercises", "Study lots", "Clean the house", "Say Mom I love her", "100pushups, 100pullups, 10km",};
 
         PopulateDbAsync(MethodikRoomDatabase db) {
             taskDao = db.taskDao();
@@ -77,9 +77,9 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
                     panelDao.insert(panel);
                 }
             }
-            int panelId = 2; // Tasks in the fist panel, Week TODO
+            int panelId = 2; // Tasks in the second panel, Week TODO
 
-            if (taskDao.getAnyTask().length < 1) {
+            if (taskDao.getAnyTask(panelId).length < 1) {
                 for (int i = 0; i <= tasks.length - 1; i++) {
                     Task task = new Task(tasks[i], panelId);
                     taskDao.insert(task);

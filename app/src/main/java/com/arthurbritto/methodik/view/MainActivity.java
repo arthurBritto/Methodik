@@ -18,6 +18,7 @@ import com.arthurbritto.methodik.R;
 import com.arthurbritto.methodik.model.Panel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";
 
     private PanelViewModel panelViewModel;
+    private ArrayList<Panel> panelArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

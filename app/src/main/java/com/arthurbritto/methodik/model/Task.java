@@ -1,5 +1,7 @@
 package com.arthurbritto.methodik.model;
 
+import android.os.Parcel;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -53,6 +55,12 @@ public class Task {
 
     @Ignore
     public Task(int id, String task_data) {
+    }
+
+    protected Task(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        panelId = in.readInt();
     }
 
     public int getId() {

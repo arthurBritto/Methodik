@@ -3,6 +3,8 @@ package com.arthurbritto.methodik.model;
 import android.app.Application;
 import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import java.util.List;
 
     /**
@@ -29,28 +31,45 @@ import java.util.List;
             allTasks = taskDao.getAllTasks();
         }
 
-        public LiveData<List<Task>> getAllTasks() {
-            return allTasks;
-        }
+        public LiveData<List<Task>> getAllTasks(){ return allTasks; }
 
-        public void insert(Task task) {
-            new insertAsyncTask(taskDao).execute(task);
-        }
+        public void insert(Task task){ new insertAsyncTask(taskDao).execute(task); }
 
-        public void update(Task task)  {
-            new updateTaskAsyncTask(taskDao).execute(task);
-        }
+        public void update(Task task){ new updateTaskAsyncTask(taskDao).execute(task); }
 
-        public void deleteAllTasks()  {
-            new deleteAllTasksAsyncTask(taskDao).execute();
-        }
+       // public void deleteAllTasks()  {
+            //new deleteAllTasksAsyncTask(taskDao).execute();}
 
         // Must run off main thread
-        public void deleteTask(Task task) {
-            new deleteTaskAsyncTask(taskDao).execute(task);
+        public void deleteTask(Task task){ new deleteTaskAsyncTask(taskDao).execute(task); }
+
+        public LiveData<List<Task>> getTasksByPanel(int panelId) {
+            MutableLiveData<List<Task>> tasks = new MutableLiveData<>();
+            new GetTasksByPanelAsyncTask(taskDao, tasks).execute(panelId);
+            return tasks;
         }
 
-        // Static inner classes below here to run database interactions in the background.
+        /**
+         * Inserts a new task into the database.
+         */
+        private static class GetTasksByPanelAsyncTask extends AsyncTask<Integer, Void, Void> {
+
+            private TaskDao asyncTaskDao;
+            private MutableLiveData<List<Task>> asyncTasks;
+
+            GetTasksByPanelAsyncTask(TaskDao dao, MutableLiveData<List<Task>> tasks) {
+                asyncTaskDao = dao;
+                asyncTasks = tasks;
+            }
+
+            @Override
+            protected Void doInBackground(final Integer... params) {
+                asyncTasks.setValue(asyncTaskDao.getAllTasksFromPanel(params[0]).getValue());
+                return null;
+            }
+        }
+
+        // Static inner classes below here to run database interactions in the back
         /**
          * Inserts a new task into the database.
          */
@@ -72,6 +91,7 @@ import java.util.List;
         /**
          * Deletes all tasks from the database (does not delete the table).
          */
+        /*
         private static class deleteAllTasksAsyncTask extends AsyncTask<Void, Void, Void> {
             private TaskDao asyncTaskDao;
 
@@ -85,6 +105,7 @@ import java.util.List;
                 return null;
             }
         }
+         */
 
         /**
          *  Deletes a single task from the database.

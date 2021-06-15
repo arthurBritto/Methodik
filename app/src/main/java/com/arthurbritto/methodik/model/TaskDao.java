@@ -22,20 +22,21 @@ public interface TaskDao {
     void insert(Task task);
 
     @Delete
-    void deleteAll(Task... tasks);
-
-    @Delete
     void deleteTask(Task task);
 
     @Update
     void update(Task... tasks);
 
-    @Query("SELECT * FROM task /*WHERE panel_id=:panelId*/ LIMIT 1")
-    Task[] getAnyTask(/*int panelId*/);
+    @Query("SELECT * FROM task WHERE panel_id=:panelId LIMIT 1")
+    Task[] getAnyTask(int panelId);
 
+    // Get All Task From All Lists(panels)
     @Query("SELECT * FROM task ORDER BY name ASC")
     LiveData<List<Task>> getAllTasks();
 
     @Query("SELECT * FROM task WHERE panel_id =:panelId ORDER BY name ASC")
-    LiveData<List<Task>> getAllTasksByPanelId(int panelId);
+    LiveData<List<Task>> getAllTasksFromPanel(int panelId);
+
+
+
 }
