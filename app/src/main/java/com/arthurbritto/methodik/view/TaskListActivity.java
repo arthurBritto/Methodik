@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.arthurbritto.methodik.R;
 import com.arthurbritto.methodik.model.Task;
+import com.arthurbritto.methodik.model.TaskRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -58,10 +59,10 @@ public class TaskListActivity extends AppCompatActivity {
         taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
         // Get all the tasks from the database
         // and associate them to the adapter.
-        taskViewModel.getTasksByPanel(extraPanelId).observe(this, new Observer<List<Task>>() {
+        taskViewModel.getTasksByPanel(extraPanelId, new TaskRepository.GetTasksResult() {
             @Override
-            public void onChanged(List<Task> tasks) {
-                // pdate the cached copy of the tasks in the adapter.
+            public void onTasksLoaded(List<Task> tasks) {
+                // update the cached copy of the tasks in the adapter.
                 adapter.setTasks(tasks);
             }
         });

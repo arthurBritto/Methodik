@@ -35,7 +35,7 @@ public interface TaskDao {
     LiveData<List<Task>> getAllTasks();
 
     @Query("SELECT * FROM task WHERE panel_id =:panelId ORDER BY name ASC")
-    LiveData<List<Task>> getAllTasksFromPanel(int panelId);
+    List<Task> getAllTasksFromPanel(int panelId);
 
 
 

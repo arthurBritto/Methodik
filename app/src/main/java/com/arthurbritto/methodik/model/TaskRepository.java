@@ -2,8 +2,8 @@ package com.arthurbritto.methodik.model;
 
 import android.app.Application;
 import android.os.AsyncTask;
+
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -43,30 +43,36 @@ import java.util.List;
         // Must run off main thread
         public void deleteTask(Task task){ new deleteTaskAsyncTask(taskDao).execute(task); }
 
-        public LiveData<List<Task>> getTasksByPanel(int panelId) {
-            MutableLiveData<List<Task>> tasks = new MutableLiveData<>();
-            new GetTasksByPanelAsyncTask(taskDao, tasks).execute(panelId);
-            return tasks;
+        public void getTasksByPanel(int panelId, GetTasksResult callback) {
+            new GetTasksByPanelAsyncTask(taskDao, callback).execute(panelId);
         }
 
         /**
          * Inserts a new task into the database.
          */
-        private static class GetTasksByPanelAsyncTask extends AsyncTask<Integer, Void, Void> {
+        private static class GetTasksByPanelAsyncTask extends AsyncTask<Integer, Void, List<Task>> {
 
             private TaskDao asyncTaskDao;
-            private MutableLiveData<List<Task>> asyncTasks;
+            private GetTasksResult asyncCallback;
 
-            GetTasksByPanelAsyncTask(TaskDao dao, MutableLiveData<List<Task>> tasks) {
+            GetTasksByPanelAsyncTask(TaskDao dao, GetTasksResult callback) {
                 asyncTaskDao = dao;
-                asyncTasks = tasks;
+                asyncCallback = callback;
             }
 
             @Override
-            protected Void doInBackground(final Integer... params) {
-                asyncTasks.setValue(asyncTaskDao.getAllTasksFromPanel(params[0]).getValue());
-                return null;
+            protected List<Task> doInBackground(final Integer... params) {
+                return asyncTaskDao.getAllTasksFromPanel(params[0]);
             }
+
+            @Override
+            protected void onPostExecute(List<Task> tasks) {
+               asyncCallback.onTasksLoaded(tasks);
+            }
+        }
+
+        public interface GetTasksResult{
+            public void onTasksLoaded(List<Task> tasks);
         }
 
         // Static inner classes below here to run database interactions in the back

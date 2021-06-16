@@ -32,7 +32,7 @@ public class TaskViewModel extends AndroidViewModel {
 
     public void update(Task task){repository.update(task);}
 
-    public LiveData<List<Task>> getTasksByPanel(int panelId) {
-        return repository.getTasksByPanel(panelId);
+    public void getTasksByPanel(int panelId, TaskRepository.GetTasksResult callback) {
+        repository.getTasksByPanel(panelId, callback);
     }
 }
