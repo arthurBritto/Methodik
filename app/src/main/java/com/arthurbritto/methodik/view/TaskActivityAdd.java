@@ -11,6 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
+/**
+ * This class displays a screen where the user add a new Task.
+ * The TaskActivityAdd returns the entered Panel to the calling activity
+ * (TaskListActivity), which then stores the new Task and updates the list.
+ */
 public class TaskActivityAdd extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.arthurbritto.methodik.REPLY";
@@ -26,7 +31,7 @@ public class TaskActivityAdd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_add);
 
-        addTaskView = findViewById(R.id.add_panel);
+        addTaskView = findViewById(R.id.add_task);
         int id = -1;
 
         final Bundle extras = getIntent().getExtras();

@@ -37,9 +37,6 @@ import java.util.List;
 
         public void update(Task task){ new updateTaskAsyncTask(taskDao).execute(task); }
 
-       // public void deleteAllTasks()  {
-            //new deleteAllTasksAsyncTask(taskDao).execute();}
-
         // Must run off main thread
         public void deleteTask(Task task){ new deleteTaskAsyncTask(taskDao).execute(task); }
 
@@ -96,25 +93,6 @@ import java.util.List;
 
         /**
          * Deletes all tasks from the database (does not delete the table).
-         */
-        /*
-        private static class deleteAllTasksAsyncTask extends AsyncTask<Void, Void, Void> {
-            private TaskDao asyncTaskDao;
-
-            deleteAllTasksAsyncTask(TaskDao dao) {
-                asyncTaskDao = dao;
-            }
-
-            @Override
-            protected Void doInBackground(Void... voids) {
-                asyncTaskDao.deleteAll();
-                return null;
-            }
-        }
-         */
-
-        /**
-         *  Deletes a single task from the database.
          */
         private static class deleteTaskAsyncTask extends AsyncTask<Task, Void, Void> {
             private TaskDao asyncTaskDao;

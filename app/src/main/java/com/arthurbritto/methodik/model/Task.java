@@ -1,7 +1,5 @@
 package com.arthurbritto.methodik.model;
 
-import android.os.Parcel;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -14,7 +12,6 @@ import static androidx.room.ForeignKey.CASCADE;
 /**
  * Entity class that represents a task on a list in the database
  */
-
 @Entity(tableName = "task",
         foreignKeys = {@ForeignKey(entity = Panel.class,
         parentColumns = "id",
@@ -37,13 +34,8 @@ public class Task {
         this.panelId = panelId;
     }
 
-    @Ignore
-    public Task(@NonNull String name) {
-        this.name = name;
-    }
-
     /*
-     * This constructor is annotated using @Ignore, because Room
+     * This constructors are  annotated using @Ignore, because Room
      * expects only one constructor by default in an entity class.
      */
     @Ignore
@@ -54,13 +46,12 @@ public class Task {
     }
 
     @Ignore
-    public Task(int id, String task_data) {
+    public Task(@NonNull String name) {
+        this.name = name;
     }
 
-    protected Task(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        panelId = in.readInt();
+    @Ignore
+    public Task(int id, String task_data) {
     }
 
     public int getId() {

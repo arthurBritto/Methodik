@@ -18,7 +18,7 @@
         />
 
     <EditText
-        android:id="@+id/add_panel"
+        android:id="@+id/add_task"
         style="@style/text_view_style"
         android:hint="@string/hint_add_task"
         android:inputType="textAutoComplete" />

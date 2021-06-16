@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,16 +55,22 @@ public class MainActivity extends AppCompatActivity {
         panelViewModel = ViewModelProviders.of(this).get(PanelViewModel.class);
         // Get all the lists from the database
         // and associate them to the adapter.
-        panelViewModel.getAllLists().observe(this, (List<Panel> panels) -> {
-            // Update the cached copy of the panels in the adapter.
-            adapter.setPanels(panels);
+        panelViewModel.getAllLists().observe(this, new Observer<List<Panel>>() {
+            @Override
+            public void onChanged(List<Panel> panels) {
+                // Update the cached copy of the panels in the adapter.
+                adapter.setPanels(panels);
+            }
         });
 
         // Floating action button setup
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, PanelActivityAdd.class);
-            startActivityForResult(intent, NEW_PANEL_ACTIVITY_REQUEST_CODE);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PanelActivityAdd.class);
+                MainActivity.this.startActivityForResult(intent, NEW_PANEL_ACTIVITY_REQUEST_CODE);
+            }
         });
 
         // Add the functionality to swipe items in the

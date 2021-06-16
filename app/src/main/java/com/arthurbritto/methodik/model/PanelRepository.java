@@ -55,7 +55,6 @@ public class PanelRepository {
     /**
      * Inserts a new List on the Panel into the database.
      */
-
     private static class insertAsyncTask extends AsyncTask<Panel, Void, Void> {
 
         private PanelDao asyncTaskDao;
@@ -74,7 +73,6 @@ public class PanelRepository {
     /**
      * Deletes all Panel Lists from the database (does not delete the table).
      */
-
     private static class deleteAllPanelListsAsyncTask extends AsyncTask<Void, Void, Void> {
         private PanelDao asyncTaskDao;
 
@@ -110,15 +108,15 @@ public class PanelRepository {
      *  Updates a List on the Panel in the database.
      */
     private static class updatePanelListAsyncTask extends AsyncTask<Panel, Void, Void> {
-        private PanelDao asyncTaskDao;
+        private PanelDao asyncPanelDao;
 
         updatePanelListAsyncTask(PanelDao dao) {
-            asyncTaskDao = dao;
+            asyncPanelDao = dao;
         }
 
         @Override
         protected Void doInBackground(final Panel... params) {
-            asyncTaskDao.update(params[0]);
+            asyncPanelDao.update(params[0]);
             return null;
         }
     }
