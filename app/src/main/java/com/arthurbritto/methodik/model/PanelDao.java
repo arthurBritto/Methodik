@@ -16,7 +16,6 @@ import java.util.List;
  * Each method performs a database operation, such as inserting
  * or deleting a list, running a DB query, or deleting all lists.
  */
-
 @Dao
 public interface PanelDao {
 

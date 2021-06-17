@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_DATA_NAME = "extra_data_name";
     public static final String EXTRA_DATA_ID = "extra_data_id";
-    public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
-    public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";
 
     private PanelViewModel panelViewModel;
     private ArrayList<Panel> panelArrayList;

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,10 +31,10 @@ public class TaskListActivity extends AppCompatActivity {
     public static final int SHOW_EDIT_TASK_ACTIVITY_REQUEST_CODE = 3;
 
     public static final String EXTRA_DATA_UPDATE_TASK = "extra_data_update_task";
-    public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
-    public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";
 
     private TaskViewModel taskViewModel;
+    private int extraPanelId;
+    private TaskAdapter adapter;
 
     TextView panelName;
 
@@ -44,7 +43,8 @@ public class TaskListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
-        int extraPanelId = getIntent().getIntExtra(EXTRA_DATA_ID, -1);
+        int extraPanelIdIntent = getIntent().getIntExtra(EXTRA_DATA_ID, -1);
+        this.extraPanelId = extraPanelIdIntent;
         String extraPanelName = getIntent().getStringExtra(EXTRA_DATA_NAME);
         panelName = (TextView) findViewById(R.id.textView3);
         panelName.setText(extraPanelName);
@@ -52,6 +52,7 @@ public class TaskListActivity extends AppCompatActivity {
         // Set up the RecyclerView.
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final TaskAdapter adapter = new TaskAdapter(this);
+        this.adapter = adapter;
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -159,22 +160,28 @@ public class TaskListActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Task task = new Task(data.getStringExtra(TaskActivityAdd.EXTRA_REPLY));
-            // Save the data.
+            Task task = new Task(data.getStringExtra(TaskActivityAdd.EXTRA_TASK_NAME), extraPanelId);
+            // Save the data
             taskViewModel.insert(task);
+            taskViewModel.getTasksByPanel(extraPanelId, new TaskRepository.GetTasksResult() {
+                @Override
+                public void onTasksLoaded(List<Task> tasks) {
+                    // update the cached copy of the tasks in the adapter.
+                    adapter.setTasks(tasks);
+                }
+            });
+
+            //taskViewModel.update(new Task(id, task_data));
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String task_data = data.getStringExtra(TaskActivityEdit.EXTRA_REPLY);
             int id = data.getIntExtra(TaskActivityEdit.EXTRA_REPLY_ID, -1);
 
-            if (id != -1) {
-                taskViewModel.update(new Task(id, task_data));
+            if (id != -1) { taskViewModel.update(new Task(id, task_data));
             } else {
-                Toast.makeText(this, R.string.unable_to_update,
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.unable_to_update, Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(
-                    this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
         }
     }
 

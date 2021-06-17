@@ -13,8 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  * After the app creates the database, all further interactions
  * with it happen through the ViewModels.
  */
-
-@Database(entities = {Panel.class, Task.class}, version = 8, exportSchema = false)
+@Database(entities = {Panel.class, Task.class}, version = 9, exportSchema = false)
 public abstract class MethodikRoomDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
@@ -59,18 +58,18 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
         private final PanelDao panelDao;
 
         // Initial data set
-        private static String[] panels = {"Week Meeting", "Week TODO", "hey You Stranger", "poems"};
-        private static String[] tasks = {"Exercises", "Study lots", "Clean the house", "Say Mom I love her", "100pushups, 100pullups, 10km"};
-        private static String[] tasks2 = {"YOLO", "I hate Myself", "MoonLightShow"};
+        private static String[] panels = {"Week Meeting", "Week TODO", "Poems", "Hey You Stranger"};
+        private static String[] tasks = {"Exercises", "Study lots", "Clean the house", "Say Mom I love her", "100 Pushups, 100 Pullups, 10km"};
+        private static String[] tasks2 = {"YOLO", "Liquid Times", "MoonLightShow", "Singing for the Stars"};
 
         PopulateDbAsync(MethodikRoomDatabase db) {
             taskDao = db.taskDao();
             panelDao = db.panelDao();
         }
 
+        // If we have no task, then create the initial list of tasks.
         @Override
         protected Void doInBackground(final Void... params) {
-            // If we have no task, then create the initial list of tasks.
 
             if (panelDao.getAnyPanels().length < 1) {
                 for (int i = 0; i <= panels.length - 1; i++) {
@@ -78,17 +77,17 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
                     panelDao.insert(panel);
                 }
             }
-            int panelId = 2; // Tasks in the second panel, Week TODO
-
-            if (taskDao.getAnyTask(panelId).length < 1) {
+            int panelIdWeek = 2; // Tasks in the second panel, Week TODO
+            if (taskDao.getAnyTask(panelIdWeek).length < 1) {
                 for (int i = 0; i <= tasks.length - 1; i++) {
-                    Task task = new Task(tasks[i], panelId);
+                    Task task = new Task(tasks[i], panelIdWeek);
                     taskDao.insert(task);
                 }
             }
-            if (taskDao.getAnyTask(panelId+1).length < 1) {
+            int panelIdPoems = 3; // Tasks in the third panel, Poems
+            if (taskDao.getAnyTask(panelIdPoems).length < 1) {
                 for (int i = 0; i <= tasks2.length - 1; i++) {
-                    Task task = new Task(tasks2[i], panelId+1);
+                    Task task = new Task(tasks2[i], panelIdPoems);
                     taskDao.insert(task);
                 }
             }

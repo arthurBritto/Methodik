@@ -21,7 +21,7 @@ public class Panel{
         this.name = name;
     }
 
-    /*
+    /**
      * This constructor is annotated using @Ignore, because Room
      * expects only one constructor by default in an entity class.
      */

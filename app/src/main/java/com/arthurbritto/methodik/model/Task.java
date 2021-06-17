@@ -46,11 +46,6 @@ public class Task {
     }
 
     @Ignore
-    public Task(@NonNull String name) {
-        this.name = name;
-    }
-
-    @Ignore
     public Task(int id, String task_data) {
     }
 

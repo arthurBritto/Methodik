@@ -18,11 +18,8 @@ import com.arthurbritto.methodik.R;
  */
 public class TaskActivityAdd extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY = "com.arthurbritto.methodik.REPLY";
-    public static final String EXTRA_REPLY_ID = "com.arthurbritto.methodik.REPLY_ID";
-
     public static final String EXTRA_DATA_UPDATE_TASK= "extra_task_to_be_updated";
-    public static final String EXTRA_DATA_ID = "extra_data_id";
+    public static final String EXTRA_TASK_NAME = "extra_task_name";
 
     private EditText addTaskView;
 
@@ -60,15 +57,9 @@ public class TaskActivityAdd extends AppCompatActivity {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     // Get the new task that the user entered.
-                    String task = addTaskView.getText().toString();
+                    String taskName = addTaskView.getText().toString();
                     // Put the new task in the extras for the reply Intent.
-                    replyIntent.putExtra(EXTRA_REPLY, task);
-                    if (extras != null && extras.containsKey(EXTRA_DATA_ID)) {
-                        int id = extras.getInt(EXTRA_DATA_ID, -1);
-                        if (id != -1) {
-                            replyIntent.putExtra(EXTRA_REPLY_ID, id);
-                        }
-                    }
+                    replyIntent.putExtra(EXTRA_TASK_NAME, taskName);
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);
                 }

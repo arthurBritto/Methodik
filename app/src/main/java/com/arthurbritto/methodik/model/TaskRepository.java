@@ -9,9 +9,8 @@ import java.util.List;
 
     /**
      * This class holds the implementation code for the methods that interact with the database.
-     * Using a repository allows us to group the implementation methods together,
-     * and allows the TaskViewModel to be a clean interface between the rest of the app
-     * and the database.
+     * Using a repository allows us to group the implementation methods together, and allows the
+     * TaskViewModel to be a clean interface between the rest of the app and the database.
      *
      * For insert, update and delete, and longer-running queries,
      * you must run the database interaction methods in the background.
@@ -47,6 +46,7 @@ import java.util.List;
         /**
          * Inserts a new task into the database.
          */
+        // Static inner classes below here to run database interactions in the background.
         private static class GetTasksByPanelAsyncTask extends AsyncTask<Integer, Void, List<Task>> {
 
             private TaskDao asyncTaskDao;
@@ -72,7 +72,6 @@ import java.util.List;
             public void onTasksLoaded(List<Task> tasks);
         }
 
-        // Static inner classes below here to run database interactions in the back
         /**
          * Inserts a new task into the database.
          */

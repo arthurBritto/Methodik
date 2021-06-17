@@ -7,9 +7,8 @@ import java.util.List;
 
 /**
  * This class holds the implementation code for the methods that interact with the database.
- * Using a repository allows us to group the implementation methods together,
- * and allows the PanelViewModel to be a clean interface between the rest of the app
- * and the database.
+ * Using a repository allows us to group the implementation methods together, and allows the
+ * PanelViewModel to be a clean interface between the rest of the app and the database.
  *
  * For insert, update and delete, and longer-running queries,
  * you must run the database interaction methods in the background.
@@ -21,7 +20,7 @@ import java.util.List;
 public class PanelRepository {
 
     private PanelDao panelDao;
-    private LiveData<List<Panel>> allLists;  // A panel have many Lists
+    private LiveData<List<Panel>> allLists;  // A panel have many Lists(One-to-Many)
 
     public PanelRepository(Application application) {
         MethodikRoomDatabase db = MethodikRoomDatabase.getDatabase(application);
@@ -50,11 +49,10 @@ public class PanelRepository {
         new deletePanelListAsyncTask(panelDao).execute(panel);
     }
 
-    // Static inner classes below here to run database interactions in the background.
-
     /**
      * Inserts a new List on the Panel into the database.
      */
+    // Static inner classes below here to run database interactions in the background.
     private static class insertAsyncTask extends AsyncTask<Panel, Void, Void> {
 
         private PanelDao asyncTaskDao;
