@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int UPDATE_PANEL_ACTIVITY_REQUEST_CODE = 2;
     public static final int SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE = 3;
 
-    public static final String EXTRA_DATA_NAME = "extra_data_name";
-    public static final String EXTRA_DATA_ID = "extra_data_id";
+    public static final String EXTRA_PANEL_NAME = "extra_panel_name";
+    public static final String EXTRA_PANEL_ID = "extra_panel_id";
 
     private PanelViewModel panelViewModel;
 
@@ -169,23 +169,20 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.unable_to_update,
                         Toast.LENGTH_LONG).show();
             }
-        } else {
-            Toast.makeText(
-                    this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
         }
     }
 
     public void launchTaskListActivity(Panel panel) {
         Intent intent = new Intent(this, TaskListActivity.class);
-        intent.putExtra(EXTRA_DATA_NAME, panel.getName());
-        intent.putExtra(EXTRA_DATA_ID, panel.getId());
+        intent.putExtra(EXTRA_PANEL_NAME, panel.getName());
+        intent.putExtra(EXTRA_PANEL_ID, panel.getId());
         startActivityForResult(intent, SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE);
     }
 
     public void launchPanelActivity(Panel panel) {
         Intent intent = new Intent(this, PanelActivityEdit.class);
-        intent.putExtra(EXTRA_DATA_NAME, panel.getName());
-        intent.putExtra(EXTRA_DATA_ID, panel.getId());
+        intent.putExtra(EXTRA_PANEL_NAME, panel.getName());
+        intent.putExtra(EXTRA_PANEL_ID, panel.getId());
         startActivityForResult(intent, UPDATE_PANEL_ACTIVITY_REQUEST_CODE);
     }
 }

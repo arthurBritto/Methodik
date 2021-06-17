@@ -11,15 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
+import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
+
 /**
  * This class displays a screen where the user add a new Task.
  * The TaskActivityAdd returns the entered Panel to the calling activity
  * (TaskListActivity), which then stores the new Task and updates the list.
  */
 public class TaskActivityAdd extends AppCompatActivity {
-
-    public static final String EXTRA_DATA_UPDATE_TASK = "extra_task_to_be_updated";
-    public static final String EXTRA_TASK_NAME = "extra_task_name";
 
     private EditText addTaskView;
 
@@ -35,10 +34,10 @@ public class TaskActivityAdd extends AppCompatActivity {
 
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
-            String task = extras.getString(EXTRA_DATA_UPDATE_TASK, "");
-            if (!task.isEmpty()) {
-                addTaskView.setText(task);
-                addTaskView.setSelection(task.length());
+            String taskName = extras.getString(EXTRA_TASK_NAME, "");
+            if (!taskName.isEmpty()) {
+                addTaskView.setText(taskName);
+                addTaskView.setSelection(taskName.length());
                 addTaskView.requestFocus();
             }
         } // Otherwise, start with empty fields.

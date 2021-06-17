@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_ID;
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_NAME;
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
 
 /**
  * This class displays a screen where the user can edit a Panel.
@@ -38,7 +38,7 @@ public class PanelActivityEdit extends AppCompatActivity {
 
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
-            String panel = extras.getString(EXTRA_DATA_NAME, "");
+            String panel = extras.getString(EXTRA_PANEL_NAME, "");
             if (!panel.isEmpty()) {
                 editPanelView.setText(panel);
                 editPanelView.setSelection(panel.length());
@@ -63,8 +63,8 @@ public class PanelActivityEdit extends AppCompatActivity {
                     String panel = editPanelView.getText().toString();
                     // Put the new panel in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, panel);
-                    if (extras != null && extras.containsKey(EXTRA_DATA_ID)) {
-                        int id = extras.getInt(EXTRA_DATA_ID, -1);
+                    if (extras != null && extras.containsKey(EXTRA_PANEL_ID)) {
+                        int id = extras.getInt(EXTRA_PANEL_ID, -1);
                         if (id != -1) {
                             replyIntent.putExtra(EXTRA_REPLY_ID, id);
                         }
