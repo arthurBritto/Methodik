@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * Adapter for the RecyclerView that displays a tasks of Tasklists.
  */
-
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     private final LayoutInflater inflater;
@@ -95,5 +94,4 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public interface ClickListener {
         void onItemLongClick(View v, int position);
     }
-
 }

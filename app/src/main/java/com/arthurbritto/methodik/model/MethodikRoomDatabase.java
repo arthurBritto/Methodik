@@ -10,10 +10,10 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 /**
- * After the app creates the database, all further interactions
- * with it happen through the ViewModels.
+ * After the app creates the database, all further
+ * interactions with it happen through the ViewModels.
  */
-@Database(entities = {Panel.class, Task.class}, version = 9, exportSchema = false)
+@Database(entities = {Panel.class, Task.class}, version = 1, exportSchema = false)
 public abstract class MethodikRoomDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();

@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * Adapter for the RecyclerView that displays a Panel of lists.
  */
-
 public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHolder> {
 
     private final LayoutInflater inflater;

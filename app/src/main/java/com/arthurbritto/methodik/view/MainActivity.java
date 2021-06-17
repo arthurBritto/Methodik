@@ -19,7 +19,6 @@ import com.arthurbritto.methodik.R;
 import com.arthurbritto.methodik.model.Panel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_DATA_ID = "extra_data_id";
 
     private PanelViewModel panelViewModel;
-    private ArrayList<Panel> panelArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,11 +146,11 @@ public class MainActivity extends AppCompatActivity {
      * When the user enters a new panel in the PanelActivityAdd,
      * that activity returns the result to this activity.
      * If the user entered a new panel, save it in the database.
-
+     *
      * @param requestCode ID for the request
      * @param resultCode indicates success or failure
      * @param data The Intent sent back from the panelActivityAdd,
-     *             which includes the panel that the user entered
+     * which includes the panel that the user entered
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

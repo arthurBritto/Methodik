@@ -12,9 +12,8 @@ import java.util.List;
 /**
  * Data Access Object (DAO) for a task.
  * Each method performs a database operation, such as inserting
- * or deleting a task, running a DB query, or deleting all tasks.
+ * or deleting a task, running a DB query.
  */
-
 @Dao
 public interface TaskDao {
 
@@ -36,7 +35,4 @@ public interface TaskDao {
 
     @Query("SELECT * FROM task WHERE panel_id =:panelId ORDER BY name ASC")
     List<Task> getAllTasksFromPanel(int panelId);
-
-
-
 }

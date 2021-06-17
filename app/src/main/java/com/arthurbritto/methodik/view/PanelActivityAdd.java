@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.arthurbritto.methodik.R;
 
 /**
@@ -19,7 +20,6 @@ public class PanelActivityAdd extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
     public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";
-
     public static final String EXTRA_DATA_UPDATE_PANEL = "extra_panel_to_be_updated";
     public static final String EXTRA_DATA_ID = "extra_data_id";
 
@@ -73,7 +73,6 @@ public class PanelActivityAdd extends AppCompatActivity {
                 }
                 finish();
             }
-
         });
     }
 }

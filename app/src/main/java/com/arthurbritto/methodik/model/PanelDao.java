@@ -12,9 +12,9 @@ import androidx.room.Update;
 import java.util.List;
 
 /**
- * Data Access Object (DAO) for a Panel of lists of tasks.
+ * Data Access Object (DAO) for a Panel with lists of tasks.
  * Each method performs a database operation, such as inserting
- * or deleting a list, running a DB query, or deleting all lists.
+ * or deleting a list, running a DB query.
  */
 @Dao
 public interface PanelDao {
@@ -37,5 +37,4 @@ public interface PanelDao {
 
     @Update
     void update(Panel... panels);
-
 }

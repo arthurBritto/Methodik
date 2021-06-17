@@ -18,7 +18,7 @@ import com.arthurbritto.methodik.R;
  */
 public class TaskActivityAdd extends AppCompatActivity {
 
-    public static final String EXTRA_DATA_UPDATE_TASK= "extra_task_to_be_updated";
+    public static final String EXTRA_DATA_UPDATE_TASK = "extra_task_to_be_updated";
     public static final String EXTRA_TASK_NAME = "extra_task_name";
 
     private EditText addTaskView;
@@ -65,7 +65,6 @@ public class TaskActivityAdd extends AppCompatActivity {
                 }
                 finish();
             }
-
         });
     }
 }

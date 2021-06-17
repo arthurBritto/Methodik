@@ -16,7 +16,6 @@ import java.util.List;
  * Typically, all you need to do to implement a database method
  * is to call it on the data access object (DAO), in the background if applicable.
  */
-
 public class PanelRepository {
 
     private PanelDao panelDao;
@@ -52,7 +51,7 @@ public class PanelRepository {
     /**
      * Inserts a new List on the Panel into the database.
      */
-    // Static inner classes below here to run database interactions in the background.
+    // Static inner classes to run database interactions in the background.
     private static class insertAsyncTask extends AsyncTask<Panel, Void, Void> {
 
         private PanelDao asyncTaskDao;

@@ -6,20 +6,22 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.arthurbritto.methodik.R;
 
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_NAME;
 
 /**
- * This class displays a screen where the user edit a Panel
+ * This class displays a screen where the user can edit a Panel.
  * The PanelActivityEdit returns the entered Panel to the calling activity
  * (MainActivity), which then stores the new Panel and updates the list.
  */
 public class PanelActivityEdit extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY = "com.arthurbritto.methodik.REPLY" ;
+    public static final String EXTRA_REPLY = "com.arthurbritto.methodik.REPLY";
     public static final String EXTRA_REPLY_ID = "com.arthurbritto.methodik.REPLY_ID";
 
     private EditText editPanelView;
@@ -72,7 +74,6 @@ public class PanelActivityEdit extends AppCompatActivity {
                 }
                 finish();
             }
-
         });
     }
 }

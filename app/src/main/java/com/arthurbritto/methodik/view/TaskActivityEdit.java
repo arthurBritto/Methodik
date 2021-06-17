@@ -74,7 +74,6 @@ public class TaskActivityEdit extends AppCompatActivity {
                 }
                 finish();
             }
-
         });
     }
 }

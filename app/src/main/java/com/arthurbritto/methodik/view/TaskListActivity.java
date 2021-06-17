@@ -170,13 +170,12 @@ public class TaskListActivity extends AppCompatActivity {
                     adapter.setTasks(tasks);
                 }
             });
-
-            //taskViewModel.update(new Task(id, task_data));
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String task_data = data.getStringExtra(TaskActivityEdit.EXTRA_REPLY);
             int id = data.getIntExtra(TaskActivityEdit.EXTRA_REPLY_ID, -1);
 
-            if (id != -1) { taskViewModel.update(new Task(id, task_data));
+            if (id != -1) {
+                taskViewModel.update(new Task(id, task_data));
             } else {
                 Toast.makeText(this, R.string.unable_to_update, Toast.LENGTH_LONG).show();
             }
