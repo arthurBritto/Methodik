@@ -159,19 +159,20 @@ public class MainActivity extends AppCompatActivity {
             Panel panel = new Panel(data.getStringExtra(PanelActivityAdd.EXTRA_REPLY));
             // Save the data.
             panelViewModel.insert(panel);
+            Toast.makeText(this, R.string.panel_created, Toast.LENGTH_LONG).show();
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String panel_data = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
             int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, -1);
-
             if (id != -1) {
                 panelViewModel.update(new Panel(id, panel_data));
+                Toast.makeText(this, R.string.panel_updated,
+                        Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, R.string.unable_to_update,
                         Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(
-                    this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
         }
     }
 
