@@ -175,7 +175,7 @@ public class TaskListActivity extends AppCompatActivity {
             int id = data.getIntExtra(TaskActivityEdit.EXTRA_REPLY_ID, -1);
 
             if (id != -1) {
-                taskViewModel.update(new Task(id, task_data));
+                taskViewModel.update(new Task(task_data, id));
             } else {
                 Toast.makeText(this, R.string.unable_to_update, Toast.LENGTH_LONG).show();
             }
