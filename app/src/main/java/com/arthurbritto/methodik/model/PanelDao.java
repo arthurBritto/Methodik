@@ -28,9 +28,6 @@ public interface PanelDao {
     @Delete
     void deletePanel(Panel panel);
 
-    @Query("SELECT * FROM panel LIMIT 1")
-    Panel[] getAnyPanels();
-
     @Transaction
     @Query("SELECT * FROM panel ORDER BY name ASC")
     LiveData<List<Panel>> getAllPanels();

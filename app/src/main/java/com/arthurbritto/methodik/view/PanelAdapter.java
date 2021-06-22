@@ -7,18 +7,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.arthurbritto.methodik.R;
 import com.arthurbritto.methodik.model.Panel;
+
 import java.util.List;
 
 /**
  * Adapter for the RecyclerView that displays a Panel of lists.
  */
-public class  PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHolder> {
+public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHolder> {
 
     private final LayoutInflater inflater;
     private List<Panel> panels; // Cached copy of panels
-    private static ClickListener clickListener;
+    private ClickListener clickListener;
 
     PanelAdapter(Context context) {
         inflater = LayoutInflater.from(context);
@@ -87,11 +89,12 @@ public class  PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHo
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
-        PanelAdapter.clickListener = clickListener;
+        this.clickListener = clickListener;
     }
 
     public interface ClickListener {
         void onItemClick(View v, int position);
+
         void onItemLongClick(View v, int position);
     }
 

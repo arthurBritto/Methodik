@@ -32,7 +32,6 @@ public class TaskActivityEdit extends AppCompatActivity {
         setContentView(R.layout.activity_task_edit);
 
         editTaskView = findViewById(R.id.edit_panel);
-        int id = -1;
 
         final Bundle extras = getIntent().getExtras();
 

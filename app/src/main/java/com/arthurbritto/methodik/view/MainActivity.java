@@ -138,8 +138,7 @@ public class MainActivity extends AppCompatActivity {
             // Delete the existing data.
             panelViewModel.deleteAll();
             return true;
-        }
-        return super.onOptionsItemSelected(item);
+        }else return super.onOptionsItemSelected(item);
     }
 
     /**

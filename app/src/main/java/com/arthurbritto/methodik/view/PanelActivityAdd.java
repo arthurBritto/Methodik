@@ -31,22 +31,10 @@ public class  PanelActivityAdd extends AppCompatActivity {
         setContentView(R.layout.activity_panel_add);
 
         addPanelView = findViewById(R.id.add_panel);
-        int id = -1;
 
         final Bundle extras = getIntent().getExtras();
 
-        // If we are passed content, fill it in for the user to edit.
-        if (extras != null) {
-            String panel = extras.getString(EXTRA_DATA_UPDATE_PANEL, "");
-            if (!panel.isEmpty()) {
-                addPanelView.setText(panel);
-                addPanelView.setSelection(panel.length());
-                addPanelView.requestFocus();
-            }
-        } // Otherwise, start with empty fields.
-
         final Button button = findViewById(R.id.button_save);
-
         // When the user presses the Save button, create a new Intent for the reply.
         // The reply Intent will be sent back to the calling activity (in this case, MainActivity).
         button.setOnClickListener(new View.OnClickListener() {
