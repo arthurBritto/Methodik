@@ -16,7 +16,7 @@ import com.arthurbritto.methodik.R;
  * The PanelActivityAdd returns the entered Panel to the calling activity
  * (MainActivity), which then stores the new Panel and updates the list.
  */
-public class PanelActivityAdd extends AppCompatActivity {
+public class  PanelActivityAdd extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
     public static final String EXTRA_REPLY_ID = "com.android.example.Methodik.REPLY_ID";

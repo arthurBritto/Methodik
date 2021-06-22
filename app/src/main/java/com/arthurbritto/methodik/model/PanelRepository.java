@@ -2,7 +2,9 @@ package com.arthurbritto.methodik.model;
 
 import android.app.Application;
 import android.os.AsyncTask;
+
 import androidx.lifecycle.LiveData;
+
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ public class PanelRepository {
     public PanelRepository(Application application) {
         MethodikRoomDatabase db = MethodikRoomDatabase.getDatabase(application);
         panelDao = db.panelDao();
-        allLists= panelDao.getAllPanels();
+        allLists = panelDao.getAllPanels();
     }
 
     public LiveData<List<Panel>> getAllLists() {
@@ -35,15 +37,14 @@ public class PanelRepository {
         new insertAsyncTask(panelDao).execute(panel);
     }
 
-    public void update(Panel panel)  {
+    public void update(Panel panel) {
         new updatePanelListAsyncTask(panelDao).execute(panel);
     }
 
-    public void deleteAllPanelLists()  {
+    public void deleteAllPanelLists() {
         new deleteAllPanelListsAsyncTask(panelDao).execute();
     }
 
-    // Must run off main thread
     public void deletePanelList(Panel panel) {
         new deletePanelListAsyncTask(panelDao).execute(panel);
     }
@@ -85,7 +86,7 @@ public class PanelRepository {
     }
 
     /**
-     *  Deletes a single List in the Panel from the database.
+     * Deletes a single List in the Panel from the database.
      */
     private static class deletePanelListAsyncTask extends AsyncTask<Panel, Void, Void> {
         private PanelDao asyncTaskDao;
@@ -102,7 +103,7 @@ public class PanelRepository {
     }
 
     /**
-     *  Updates a List on the Panel in the database.
+     * Updates a List on the Panel in the database.
      */
     private static class updatePanelListAsyncTask extends AsyncTask<Panel, Void, Void> {
         private PanelDao asyncPanelDao;

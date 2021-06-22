@@ -23,4 +23,8 @@
     <string name="hint_add_task">New Task…</string>
     <string name="hint_edit_task">Edit Task…</string>
     <string name="panel_name">PanelName</string>
+    <string name="add_new_task">Added New Task</string>
+    <string name="edited_task">Task Edited</string>
+    <string name="panel_updated">Panel Updated</string>
+    <string name="panel_created">List Created</string>
 </resources>

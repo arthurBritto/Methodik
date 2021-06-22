@@ -9,11 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Methodik">
-        <activity android:name=".view.PanelActivityEdit" />
-        <activity android:name=".view.PanelActivityAdd" />
-        <activity android:name=".view.TaskListActivity"/>
-        <activity android:name=".view.TaskActivityEdit"/>
-        <activity android:name=".view.TaskActivityAdd" />
         <activity
             android:name=".view.MainActivity"
             android:theme="@style/Theme.Methodik.NoActionBar">
@@ -23,6 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.PanelActivityEdit" />
+        <activity android:name=".view.PanelActivityAdd" />
+        <activity android:name=".view.TaskListActivity"/>
+        <activity android:name=".view.TaskActivityEdit"/>
+        <activity android:name=".view.TaskActivityAdd" />
     </application>
 
 </manifest>

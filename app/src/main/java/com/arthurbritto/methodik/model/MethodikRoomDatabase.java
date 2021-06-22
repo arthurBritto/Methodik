@@ -59,8 +59,8 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
 
         // Initial data set
         private static String[] panels = {"Week Meeting", "Week TODO", "Poems", "Hey You Stranger"};
-        private static String[] tasks = {"Exercises", "Study lots", "Clean the house", "Say Mom I love her", "100 Pushups, 100 Pullups, 10km"};
-        private static String[] tasks2 = {"YOLO", "Liquid Times", "MoonLightShow", "Singing for the Stars"};
+        private static String[] weekTODOtasks = {"Exercises", "Study lots", "Clean the house", "Say Mom I love her", "100 Pushups, 100 Pullups, 10km"};
+        private static String[] poemsTask = {"YOLO", "Liquid Times", "MoonLightShow", "Singing for the Stars"};
 
         PopulateDbAsync(MethodikRoomDatabase db) {
             taskDao = db.taskDao();
@@ -77,17 +77,21 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
                     panelDao.insert(panel);
                 }
             }
+
             int panelIdWeek = 2; // Tasks in the second panel, Week TODO
+
             if (taskDao.getAnyTask(panelIdWeek).length < 1) {
-                for (int i = 0; i <= tasks.length - 1; i++) {
-                    Task task = new Task(tasks[i], panelIdWeek);
+                for (int i = 0; i <= weekTODOtasks.length - 1; i++) {
+                    Task task = new Task(weekTODOtasks[i], panelIdWeek);
                     taskDao.insert(task);
                 }
             }
+
             int panelIdPoems = 3; // Tasks in the third panel, Poems
+
             if (taskDao.getAnyTask(panelIdPoems).length < 1) {
-                for (int i = 0; i <= tasks2.length - 1; i++) {
-                    Task task = new Task(tasks2[i], panelIdPoems);
+                for (int i = 0; i <= poemsTask.length - 1; i++) {
+                    Task task = new Task(poemsTask[i], panelIdPoems);
                     taskDao.insert(task);
                 }
             }
