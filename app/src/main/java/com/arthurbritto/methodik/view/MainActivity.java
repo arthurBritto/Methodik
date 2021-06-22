@@ -132,13 +132,13 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.clear_data) {
-            // Add a toast just for confirmation
             Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
 
             // Delete the existing data.
             panelViewModel.deleteAll();
             return true;
-        }else return super.onOptionsItemSelected(item);
+        }
+        else return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -170,8 +170,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.unable_to_update,
                         Toast.LENGTH_LONG).show();
             }
-        } else {
-            Toast.makeText(this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
         }
     }
 
