@@ -21,16 +21,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_ID;
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_NAME;
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
 
 public class TaskListActivity extends AppCompatActivity {
 
     public static final int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_TASK_ACTIVITY_REQUEST_CODE = 2;
-    public static final int SHOW_EDIT_TASK_ACTIVITY_REQUEST_CODE = 3;
 
-    public static final String EXTRA_DATA_UPDATE_TASK = "extra_data_update_task";
+    public static final String EXTRA_NAME_UPDATE_TASK = "extra_name_update_task";
+    public static final String EXTRA_ID_UPDATE_TASK = "extra_id_update_task";
 
     private TaskViewModel taskViewModel;
     private int extraPanelId;
@@ -43,9 +43,9 @@ public class TaskListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
-        int extraPanelIdIntent = getIntent().getIntExtra(EXTRA_DATA_ID, -1);
+        int extraPanelIdIntent = getIntent().getIntExtra(EXTRA_PANEL_ID, -1);
         this.extraPanelId = extraPanelIdIntent;
-        String extraPanelName = getIntent().getStringExtra(EXTRA_DATA_NAME);
+        String extraPanelName = getIntent().getStringExtra(EXTRA_PANEL_NAME);
         panelName = (TextView) findViewById(R.id.textView3);
         panelName.setText(extraPanelName);
 
@@ -186,8 +186,8 @@ public class TaskListActivity extends AppCompatActivity {
 
     public void launchEditTaskActivity(Task task) {
         Intent intent = new Intent(this, TaskActivityEdit.class);
-        intent.putExtra(EXTRA_DATA_UPDATE_TASK, task.getName());
-        intent.putExtra(EXTRA_DATA_ID, task.getId());
+        intent.putExtra(EXTRA_NAME_UPDATE_TASK, task.getName());
+        intent.putExtra(EXTRA_ID_UPDATE_TASK, task.getId());
         startActivityForResult(intent, UPDATE_TASK_ACTIVITY_REQUEST_CODE);
     }
 }

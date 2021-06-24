@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_ID;
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_DATA_NAME;
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
+import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_ID_UPDATE_TASK;
+import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_NAME_UPDATE_TASK;
 
 /**
  * This class displays a screen where the user edit a task.
@@ -37,7 +39,7 @@ public class TaskActivityEdit extends AppCompatActivity {
 
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
-            String task = extras.getString(EXTRA_DATA_NAME, "");
+            String task = extras.getString(EXTRA_NAME_UPDATE_TASK, "");
             if (!task.isEmpty()) {
                 editTaskView.setText(task);
                 editTaskView.setSelection(task.length());
@@ -62,8 +64,8 @@ public class TaskActivityEdit extends AppCompatActivity {
                     String task = editTaskView.getText().toString();
                     // Put the new task in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, task);
-                    if (extras != null && extras.containsKey(EXTRA_DATA_ID)) {
-                        int id = extras.getInt(EXTRA_DATA_ID, -1);
+                    if (extras != null && extras.containsKey(EXTRA_ID_UPDATE_TASK)) {
+                        int id = extras.getInt(EXTRA_ID_UPDATE_TASK, -1);
                         if (id != -1) {
                             replyIntent.putExtra(EXTRA_REPLY_ID, id);
                         }
