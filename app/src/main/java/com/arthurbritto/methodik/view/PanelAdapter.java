@@ -57,9 +57,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
      */
     @Override
     public int getItemCount() {
-        if (panels != null)
-            return panels.size();
-        else return 0;
+        return (panels != null) ? panels.size() : 0;
     }
 
     /**

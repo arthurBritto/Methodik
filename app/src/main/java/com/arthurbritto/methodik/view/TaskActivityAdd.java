@@ -29,7 +29,6 @@ public class TaskActivityAdd extends AppCompatActivity {
         setContentView(R.layout.activity_task_add);
 
         addTaskView = findViewById(R.id.add_task);
-        int id = -1;
 
         final Bundle extras = getIntent().getExtras();
 
