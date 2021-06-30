@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Panel> panels) {
                 // Update the cached copy of the panels in the adapter.
-                adapter.setPanels(panels);
+                adapter.updatePanels(panels);
             }
         });
 

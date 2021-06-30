@@ -79,14 +79,12 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
             }
 
             int panelIdWeek = 2; // Tasks in the second panel, Week TODO
-
             for (int i = 0; i <= weekTODOtasks.length - 1; i++) {
                 Task task = new Task(weekTODOtasks[i], panelIdWeek);
                 taskDao.insert(task);
             }
 
             int panelIdPoems = 3; // Tasks in the third panel, Poems
-
             for (int i = 0; i <= poemsTask.length - 1; i++) {
                 Task task = new Task(poemsTask[i], panelIdPoems);
                 taskDao.insert(task);

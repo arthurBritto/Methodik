@@ -46,7 +46,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
     /**
      * Associates a panel of lists with this adapter
      */
-    void setPanels(List<Panel> panels) {
+    void updatePanels(List<Panel> panels) {
         this.panels = panels;
         notifyDataSetChanged();
     }
