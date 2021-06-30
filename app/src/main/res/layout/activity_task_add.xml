@@ -7,15 +7,14 @@
     android:padding="24dp">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/addTextTaskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:text="@string/title_add_task"
-        android:textSize="@dimen/title"
         android:textColor="@color/colorPrimaryLight"
-        />
+        android:textSize="@dimen/title" />
 
     <EditText
         android:id="@+id/add_task"

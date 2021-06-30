@@ -5,22 +5,21 @@
     android:background="@color/colorScreenBackground"
     android:orientation="vertical"
     android:padding="24dp">
+
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextTaskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:text="@string/title_edit_task"
-        android:textSize="@dimen/title"
         android:textColor="@color/colorPrimaryLight"
-        />
+        android:textSize="@dimen/title" />
 
     <EditText
-        android:id="@+id/edit_panel"
+        android:id="@+id/edit_task"
         style="@style/text_view_style"
-        android:hint="@string/hint_edit_task"
-        android:inputType="textAutoComplete"/>
+        android:inputType="textAutoComplete" />
 
     <Button
         android:id="@+id/button_save"
