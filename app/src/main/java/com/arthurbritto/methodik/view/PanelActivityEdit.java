@@ -31,7 +31,7 @@ public class PanelActivityEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_edit);
 
-        editPanelView = findViewById(R.id.edit_panel);
+        editPanelView = findViewById(R.id.edit_panel_text);
 
         final Bundle extras = getIntent().getExtras();
 

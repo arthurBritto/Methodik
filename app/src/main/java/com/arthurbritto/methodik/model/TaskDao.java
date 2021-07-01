@@ -29,7 +29,6 @@ public interface TaskDao {
     @Query("SELECT * FROM task WHERE panel_id=:panelId LIMIT 1")
     Task[] getAnyTask(int panelId);
 
-    // Get All Task From All Lists(panels)
     @Query("SELECT * FROM task ORDER BY name ASC")
     LiveData<List<Task>> getAllTasks();
 

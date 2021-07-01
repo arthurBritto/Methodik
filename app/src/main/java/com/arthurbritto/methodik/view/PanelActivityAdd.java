@@ -32,8 +32,6 @@ public class  PanelActivityAdd extends AppCompatActivity {
 
         addPanelView = findViewById(R.id.add_panel);
 
-        final Bundle extras = getIntent().getExtras();
-
         final Button button = findViewById(R.id.button_save);
         // When the user presses the Save button, create a new Intent for the reply.
         // The reply Intent will be sent back to the calling activity (in this case, MainActivity).
