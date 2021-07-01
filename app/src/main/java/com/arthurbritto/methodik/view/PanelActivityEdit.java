@@ -62,11 +62,9 @@ public class PanelActivityEdit extends AppCompatActivity {
                     String panel = editPanelView.getText().toString();
                     // Put the new panel in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, panel);
-                    if (extras != null && extras.containsKey(EXTRA_PANEL_ID)) {
-                        int id = extras.getInt(EXTRA_PANEL_ID, -1);
-                        if (id != -1) {
-                            replyIntent.putExtra(EXTRA_REPLY_ID, id);
-                        }
+                    int id = extras.getInt(EXTRA_PANEL_ID, -1);
+                    if (id != -1) {
+                        replyIntent.putExtra(EXTRA_REPLY_ID, id);
                     }
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);

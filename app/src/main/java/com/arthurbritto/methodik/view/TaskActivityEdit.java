@@ -64,11 +64,9 @@ public class TaskActivityEdit extends AppCompatActivity {
                     String task = editTaskView.getText().toString();
                     // Put the new task in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, task);
-                    if (extras != null && extras.containsKey(EXTRA_ID_UPDATE_TASK)) {
-                        int id = extras.getInt(EXTRA_ID_UPDATE_TASK, -1);
-                        if (id != -1) {
-                            replyIntent.putExtra(EXTRA_REPLY_ID, id);
-                        }
+                    int id = extras.getInt(EXTRA_ID_UPDATE_TASK, -1);
+                    if (id != -1) {
+                        replyIntent.putExtra(EXTRA_REPLY_ID, id);
                     }
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);

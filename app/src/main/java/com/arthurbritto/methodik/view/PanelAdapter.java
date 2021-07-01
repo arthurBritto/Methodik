@@ -42,9 +42,6 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         if (panels != null) {
             Panel current = panels.get(position);
             holder.panelItemView.setText(current.getName());
-        } else {
-            // Covers the case of data not being ready yet.
-            holder.panelItemView.setText(R.string.no_panel);
         }
     }
 

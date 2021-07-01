@@ -18,6 +18,10 @@ import java.util.List;
  */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
+    public interface ClickListener {
+        void onItemLongClick(View v, int position);
+    }
+
     private final LayoutInflater inflater;
     private List<Task> tasks; // Cached copy of tasks
     private static ClickListener clickListener;
@@ -37,16 +41,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         if (tasks != null) {
             Task current = tasks.get(position);
             holder.taskItemView.setText(current.getName());
-        } else {
-            // Covers the case of data not being ready yet.
-            holder.taskItemView.setText(R.string.no_task);
         }
     }
 
     /**
      * Associates a task of Tasklist with this adapter
      */
-    void setTasks(List<Task> tasks) {
+    void updateTasks(List<Task> tasks) {
         this.tasks = tasks;
         notifyDataSetChanged();
     }
@@ -57,9 +58,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
      */
     @Override
     public int getItemCount() {
-        if (tasks != null)
-            return tasks.size();
-        else return 0;
+        return (tasks != null) ? tasks.size() : 0;
     }
 
     /**
@@ -89,9 +88,5 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public void setOnItemClickListener(ClickListener clickListener) {
         TaskAdapter.clickListener = clickListener;
-    }
-
-    public interface ClickListener {
-        void onItemLongClick(View v, int position);
     }
 }

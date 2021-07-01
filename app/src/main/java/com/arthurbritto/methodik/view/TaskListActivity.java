@@ -35,8 +35,7 @@ public class TaskListActivity extends AppCompatActivity {
     private TaskViewModel taskViewModel;
     private int extraPanelId;
     private TaskAdapter adapter;
-
-    TextView panelName;
+    private TextView panelName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +63,7 @@ public class TaskListActivity extends AppCompatActivity {
             @Override
             public void onTasksLoaded(List<Task> tasks) {
                 // update the cached copy of the tasks in the adapter.
-                adapter.setTasks(tasks);
+                adapter.updateTasks(tasks);
             }
         });
 
@@ -167,7 +166,7 @@ public class TaskListActivity extends AppCompatActivity {
                 @Override
                 public void onTasksLoaded(List<Task> tasks) {
                     // update the cached copy of the tasks in the adapter.
-                    adapter.setTasks(tasks);
+                    adapter.updateTasks(tasks);
                 }
             });
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
