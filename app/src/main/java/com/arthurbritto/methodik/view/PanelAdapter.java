@@ -18,6 +18,11 @@ import java.util.List;
  */
 public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHolder> {
 
+    public interface ClickListener {
+        void onItemClick(View v, int position);
+        void onItemLongClick(View v, int position);
+    }
+
     private final LayoutInflater inflater;
     private List<Panel> panels; // Cached copy of panels
     private ClickListener clickListener;
@@ -89,11 +94,4 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
     public void setOnItemClickListener(ClickListener clickListener) {
         this.clickListener = clickListener;
     }
-
-    public interface ClickListener {
-        void onItemClick(View v, int position);
-
-        void onItemLongClick(View v, int position);
-    }
-
 }
