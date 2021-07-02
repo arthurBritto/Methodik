@@ -13,9 +13,9 @@ import static androidx.room.ForeignKey.CASCADE;
  */
 @Entity(tableName = "task",
         foreignKeys = {@ForeignKey(entity = Panel.class,
-        parentColumns = "id",
-        childColumns = "panel_id",
-        onDelete = CASCADE)})
+                parentColumns = "id",
+                childColumns = "panel_id",
+                onDelete = CASCADE)})
 public class Task {
 
     @PrimaryKey(autoGenerate = true)
@@ -51,9 +51,5 @@ public class Task {
 
     public int getPanelId() {
         return panelId;
-    }
-
-    public void setPanelId(int panelId) {
-        this.panelId = panelId;
     }
 }
