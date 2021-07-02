@@ -134,8 +134,7 @@ public class MainActivity extends AppCompatActivity {
             // Delete the existing data.
             panelViewModel.deleteAll();
             return true;
-        }
-        else return super.onOptionsItemSelected(item);
+        } else return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -144,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
      * If the user entered a new panel, save it in the database.
      *
      * @param requestCode ID for the request
-     * @param resultCode indicates success or failure
-     * @param data The Intent sent back from the panelActivityAdd,
-     * which includes the panel that the user entered
+     * @param resultCode  indicates success or failure
+     * @param data        The Intent sent back from the panelActivityAdd,
+     *                    which includes the panel that the user entered
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,9 +158,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String panel_data = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
             int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, -1);
-                panelViewModel.update(new Panel(id, panel_data));
-                Toast.makeText(this, R.string.panel_updated,
-                        Toast.LENGTH_LONG).show();
+            panelViewModel.update(new Panel(id, panel_data));
+            Toast.makeText(this, R.string.panel_updated, Toast.LENGTH_LONG).show();
         }
     }
 

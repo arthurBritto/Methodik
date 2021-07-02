@@ -20,11 +20,17 @@ public class TaskViewModel extends AndroidViewModel {
         repository = new TaskRepository(application);
     }
 
-    public void insert(Task task){repository.insert(task);}
+    public void insert(Task task) {
+        repository.insert(task);
+    }
 
-    public void deleteTask(Task task){repository.deleteTask(task);}
+    public void deleteTask(Task task) {
+        repository.deleteTask(task);
+    }
 
-    public void update(Task task){repository.update(task);}
+    public void update(Task task) {
+        repository.update(task);
+    }
 
     public void getTasksByPanel(int panelId, TaskRepository.GetTasksResult callback) {
         repository.getTasksByPanel(panelId, callback);

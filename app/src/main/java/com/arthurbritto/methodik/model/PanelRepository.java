@@ -11,10 +11,10 @@ import java.util.List;
  * This class holds the implementation code for the methods that interact with the database.
  * Using a repository allows us to group the implementation methods together, and allows the
  * PanelViewModel to be a clean interface between the rest of the app and the database.
- *
+ * <p>
  * For insert, update and delete, and longer-running queries,
  * you must run the database interaction methods in the background.
- *
+ * <p>
  * Typically, all you need to do to implement a database method
  * is to call it on the data access object (DAO), in the background if applicable.
  */
