@@ -45,7 +45,7 @@ public class TaskListActivity extends AppCompatActivity {
         int extraPanelIdIntent = getIntent().getIntExtra(EXTRA_PANEL_ID, -1);
         this.extraPanelId = extraPanelIdIntent;
         String extraPanelName = getIntent().getStringExtra(EXTRA_PANEL_NAME);
-        panelName = (TextView) findViewById(R.id.textView3);
+        panelName = (TextView) findViewById(R.id.textViewPanelName);
         panelName.setText(extraPanelName);
 
         // Set up the RecyclerView.
@@ -108,7 +108,6 @@ public class TaskListActivity extends AppCompatActivity {
         helper.attachToRecyclerView(recyclerView);
 
         adapter.setOnItemClickListener(new TaskAdapter.ClickListener() {
-
             @Override
             public void onItemLongClick(View v, int position) {
                 Task task = adapter.getTaskAtPosition(position);
@@ -172,7 +171,6 @@ public class TaskListActivity extends AppCompatActivity {
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String task_data = data.getStringExtra(TaskActivityEdit.EXTRA_REPLY);
             int id = data.getIntExtra(TaskActivityEdit.EXTRA_REPLY_ID, -1);
-
             if (id != -1) {
                 taskViewModel.update(new Task(task_data, id));
             } else {

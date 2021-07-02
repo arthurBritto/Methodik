@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Methodik.AppBarOverlay">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewPanelName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
