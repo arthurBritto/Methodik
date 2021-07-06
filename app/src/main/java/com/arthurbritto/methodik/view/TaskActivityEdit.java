@@ -30,19 +30,18 @@ public class TaskActivityEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_edit);
 
-        editTaskView = findViewById(R.id.edit_panel);
-        int id = -1;
+        editTaskView = findViewById(R.id.edit_task);
 
         final Bundle extras = getIntent().getExtras();
 
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
-            String taskName = extras.getString(EXTRA_TASK_NAME, "");
+            String task = extras.getString(EXTRA_TASK_NAME, "");
             int taskId = extras.getInt(EXTRA_TASK_ID, DEFAULT_VALUE);
             this.taskId = taskId;
-            if (!taskName.isEmpty()) {
-                editTaskView.setText(taskName);
-                editTaskView.setSelection(taskName.length());
+            if (!task.isEmpty()) {
+                editTaskView.setText(task);
+                editTaskView.setSelection(task.length());
                 editTaskView.requestFocus();
             }
         } // Otherwise, start with empty fields.

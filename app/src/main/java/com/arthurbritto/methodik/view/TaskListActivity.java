@@ -2,7 +2,6 @@ package com.arthurbritto.methodik.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -35,8 +34,7 @@ public class TaskListActivity extends AppCompatActivity {
     private TaskViewModel taskViewModel;
     private int extraPanelId;
     private TaskAdapter adapter;
-
-    TextView panelName;
+    private TextView panelName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,7 @@ public class TaskListActivity extends AppCompatActivity {
         int extraPanelIdIntent = getIntent().getIntExtra(EXTRA_PANEL_ID, DEFAULT_VALUE);
         this.extraPanelId = extraPanelIdIntent;
         String extraPanelName = getIntent().getStringExtra(EXTRA_PANEL_NAME);
-        panelName = (TextView) findViewById(R.id.textView3);
+        panelName = (TextView) findViewById(R.id.textViewPanelName);
         panelName.setText(extraPanelName);
 
         // Set up the RecyclerView.
@@ -64,7 +62,7 @@ public class TaskListActivity extends AppCompatActivity {
             @Override
             public void onTasksLoaded(List<Task> tasks) {
                 // update the cached copy of the tasks in the adapter.
-                adapter.setTasks(tasks);
+                adapter.updateTasks(tasks);
             }
         });
 
@@ -109,20 +107,12 @@ public class TaskListActivity extends AppCompatActivity {
         helper.attachToRecyclerView(recyclerView);
 
         adapter.setOnItemClickListener(new TaskAdapter.ClickListener() {
-
             @Override
             public void onItemLongClick(View v, int position) {
                 Task task = adapter.getTaskAtPosition(position);
                 launchEditTaskActivity(task);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     // The options menu has a single item "Clear all data now"
@@ -167,7 +157,7 @@ public class TaskListActivity extends AppCompatActivity {
                 @Override
                 public void onTasksLoaded(List<Task> tasks) {
                     // update the cached copy of the tasks in the adapter.
-                    adapter.setTasks(tasks);
+                    adapter.updateTasks(tasks);
                 }
             });
             Toast.makeText(this, R.string.add_new_task, Toast.LENGTH_LONG).show();
@@ -175,16 +165,10 @@ public class TaskListActivity extends AppCompatActivity {
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String taskNewName = data.getStringExtra(EXTRA_TASK_NAME);
             int taskId = data.getIntExtra(EXTRA_TASK_ID, DEFAULT_VALUE);
-            taskViewModel.update(new Task(taskId, taskNewName, extraPanelId));
-
-            // Save the data
-            taskViewModel.getTasksByPanel(extraPanelId, new TaskRepository.GetTasksResult() {
-                @Override
-                public void onTasksLoaded(List<Task> tasks) {
-                    // update the cached copy of the tasks in the adapter.
-                    adapter.setTasks(tasks);
-                }
-            });
+            taskViewModel.update(new Task(taskNewName, extraPanelId));
+            Toast.makeText(this, R.string.unable_to_update, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
         }
     }
 

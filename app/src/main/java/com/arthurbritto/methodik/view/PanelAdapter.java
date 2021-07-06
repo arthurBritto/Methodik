@@ -18,9 +18,14 @@ import java.util.List;
  */
 public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHolder> {
 
+    public interface ClickListener {
+        void onItemClick(View v, int position);
+        void onItemLongClick(View v, int position);
+    }
+
     private final LayoutInflater inflater;
     private List<Panel> panels; // Cached copy of panels
-    private static ClickListener clickListener;
+    private ClickListener clickListener;
 
     PanelAdapter(Context context) {
         inflater = LayoutInflater.from(context);
@@ -37,16 +42,13 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         if (panels != null) {
             Panel current = panels.get(position);
             holder.panelItemView.setText(current.getName());
-        } else {
-            // Covers the case of data not being ready yet.
-            holder.panelItemView.setText(R.string.no_panel);
         }
     }
 
     /**
      * Associates a panel of lists with this adapter
      */
-    void setPanels(List<Panel> panels) {
+    void updatePanels(List<Panel> panels) {
         this.panels = panels;
         notifyDataSetChanged();
     }
@@ -57,9 +59,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
      */
     @Override
     public int getItemCount() {
-        if (panels != null)
-            return panels.size();
-        else return 0;
+        return (panels != null) ? panels.size() : 0;
     }
 
     /**
@@ -89,13 +89,6 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
-        PanelAdapter.clickListener = clickListener;
+        this.clickListener = clickListener;
     }
-
-    public interface ClickListener {
-        void onItemClick(View v, int position);
-
-        void onItemLongClick(View v, int position);
-    }
-
 }

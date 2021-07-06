@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
  * Entity class that represents a Panel of lists of tasks in the database
  */
 @Entity(tableName = "panel")
-public class Panel{
+public class Panel {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

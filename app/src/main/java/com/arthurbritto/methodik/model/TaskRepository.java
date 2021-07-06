@@ -2,33 +2,29 @@ package com.arthurbritto.methodik.model;
 
 import android.app.Application;
 import android.os.AsyncTask;
+
 import androidx.lifecycle.LiveData;
+
 import java.util.List;
 
 /**
  * This class holds the implementation code for the methods that interact with the database.
  * Using a repository allows us to group the implementation methods together, and allows the
  * TaskViewModel to be a clean interface between the rest of the app and the database.
- *
+ * <p>
  * For insert, update and delete, and longer-running queries,
  * you must run the database interaction methods in the background.
- *
+ * <p>
  * Typically, all you need to do to implement a database method
  * is to call it on the data access object (DAO), in the background if applicable.
  */
 public class TaskRepository {
 
     private TaskDao taskDao;
-    private LiveData<List<Task>> allTasks;
 
     public TaskRepository(Application application) {
         MethodikRoomDatabase db = MethodikRoomDatabase.getDatabase(application);
         taskDao = db.taskDao();
-        allTasks = taskDao.getAllTasks();
-    }
-
-    public LiveData<List<Task>> getAllTasks() {
-        return allTasks;
     }
 
     public void insert(Task task) {
@@ -39,7 +35,6 @@ public class TaskRepository {
         new updateTaskAsyncTask(taskDao).execute(task);
     }
 
-    // Must run off main thread
     public void deleteTask(Task task) {
         new deleteTaskAsyncTask(taskDao).execute(task);
     }

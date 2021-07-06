@@ -12,13 +12,13 @@
         android:theme="@style/Theme.Methodik.AppBarOverlay">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewPanelName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="@string/panel_name"
-            android:textSize="40dp"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textSize="40dp" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -37,8 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_add_black_24dp"
-        app:backgroundTint="@color/colorAccent" />
-
+        app:backgroundTint="@color/colorAccent"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

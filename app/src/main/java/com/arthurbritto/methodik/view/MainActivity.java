@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Panel> panels) {
                 // Update the cached copy of the panels in the adapter.
-                adapter.setPanels(panels);
+                adapter.updatePanels(panels);
             }
         });
 
@@ -129,18 +129,13 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, as long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.clear_data) {
-            // Add a toast just for confirmation
+        if (item.getItemId() == R.id.clear_data) {
             Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
 
             // Delete the existing data.
             panelViewModel.deleteAll();
             return true;
-        }
-        return super.onOptionsItemSelected(item);
+        } else return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -160,15 +155,12 @@ public class MainActivity extends AppCompatActivity {
             Panel panel = new Panel(data.getStringExtra(PanelActivityAdd.EXTRA_REPLY));
             // Save the data.
             panelViewModel.insert(panel);
+            Toast.makeText(this, R.string.panel_created, Toast.LENGTH_LONG).show();
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String panel_data = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
-            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, DEFAULT_VALUE);
-            if (id != -1) {
-                panelViewModel.update(new Panel(id, panel_data));
-            } else {
-                Toast.makeText(this, R.string.unable_to_update,
-                        Toast.LENGTH_LONG).show();
-            }
+            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, -1);
+            panelViewModel.update(new Panel(id, panel_data));
+            Toast.makeText(this, R.string.panel_updated, Toast.LENGTH_LONG).show();
         }
     }
 

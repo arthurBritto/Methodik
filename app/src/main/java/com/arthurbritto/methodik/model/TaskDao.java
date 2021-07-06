@@ -1,12 +1,12 @@
 package com.arthurbritto.methodik.model;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
+
 import java.util.List;
 
 /**
@@ -25,13 +25,6 @@ public interface TaskDao {
 
     @Update
     void update(Task... tasks);
-
-    @Query("SELECT * FROM task WHERE panel_id=:panelId LIMIT 1")
-    Task[] getAnyTask(int panelId);
-
-    // Get All Task From All Lists(panels)
-    @Query("SELECT * FROM task ORDER BY name ASC")
-    LiveData<List<Task>> getAllTasks();
 
     @Query("SELECT * FROM task WHERE panel_id =:panelId ORDER BY name ASC")
     List<Task> getAllTasksFromPanel(int panelId);

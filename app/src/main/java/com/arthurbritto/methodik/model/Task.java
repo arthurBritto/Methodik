@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
 import static androidx.room.ForeignKey.CASCADE;
 
 /**
@@ -13,9 +13,9 @@ import static androidx.room.ForeignKey.CASCADE;
  */
 @Entity(tableName = "task",
         foreignKeys = {@ForeignKey(entity = Panel.class,
-        parentColumns = "id",
-        childColumns = "panel_id",
-        onDelete = CASCADE)})
+                parentColumns = "id",
+                childColumns = "panel_id",
+                onDelete = CASCADE)})
 public class Task {
 
     @PrimaryKey(autoGenerate = true)
@@ -31,21 +31,6 @@ public class Task {
     public Task(@NonNull String name, int panelId) {
         this.name = name;
         this.panelId = panelId;
-    }
-
-    /*
-     * This constructors are  annotated using @Ignore, because Room
-     * expects only one constructor by default in an entity class.
-     */
-    @Ignore
-    public Task(int id, @NonNull String name, int panelId) {
-        this.id = id;
-        this.name = name;
-        this.panelId = panelId;
-    }
-
-    @Ignore
-    public Task(int id, String task_data) {
     }
 
     public int getId() {
@@ -66,9 +51,5 @@ public class Task {
 
     public int getPanelId() {
         return panelId;
-    }
-
-    public void setPanelId(int panelId) {
-        this.panelId = panelId;
     }
 }
