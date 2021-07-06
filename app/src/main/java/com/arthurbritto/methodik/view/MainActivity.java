@@ -149,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
      * If the user entered a new panel, save it in the database.
      *
      * @param requestCode ID for the request
-     * @param resultCode indicates success or failure
-     * @param data The Intent sent back from the panelActivityAdd,
-     * which includes the panel that the user entered
+     * @param resultCode  indicates success or failure
+     * @param data        The Intent sent back from the panelActivityAdd,
+     *                    which includes the panel that the user entered
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -22,13 +22,21 @@ public class TaskViewModel extends AndroidViewModel {
         allTasks = repository.getAllTasks();
     }
 
-    LiveData<List<Task>> getAllTasks() {return allTasks;}
+    LiveData<List<Task>> getAllTasks() {
+        return allTasks;
+    }
 
-    public void insert(Task task){repository.insert(task);}
+    public void insert(Task task) {
+        repository.insert(task);
+    }
 
-    public void deleteTask(Task task){repository.deleteTask(task);}
+    public void deleteTask(Task task) {
+        repository.deleteTask(task);
+    }
 
-    public void update(Task task){repository.update(task);}
+    public void update(Task task) {
+        repository.update(task);
+    }
 
     public void getTasksByPanel(int panelId, TaskRepository.GetTasksResult callback) {
         repository.getTasksByPanel(panelId, callback);
