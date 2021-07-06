@@ -185,10 +185,6 @@ public class TaskListActivity extends AppCompatActivity {
                     adapter.setTasks(tasks);
                 }
             });
-            Toast.makeText(this, R.string.edited_task, Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
         }
     }
 
