@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
+import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_VALUE;
 import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_ID;
 import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
 
@@ -37,7 +38,7 @@ public class TaskActivityEdit extends AppCompatActivity {
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
             String taskName = extras.getString(EXTRA_TASK_NAME, "");
-            int taskId = extras.getInt(EXTRA_TASK_ID, -1);
+            int taskId = extras.getInt(EXTRA_TASK_ID, DEFAULT_VALUE);
             this.taskId = taskId;
             if (!taskName.isEmpty()) {
                 editTaskView.setText(taskName);

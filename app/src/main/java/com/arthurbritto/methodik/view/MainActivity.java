@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int NEW_PANEL_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_PANEL_ACTIVITY_REQUEST_CODE = 2;
     public static final int SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE = 3;
+    public static final int DEFAULT_VALUE = -1;
 
     public static final String EXTRA_PANEL_NAME = "extra_panel_name";
     public static final String EXTRA_PANEL_ID = "extra_panel_id";
@@ -161,8 +162,7 @@ public class MainActivity extends AppCompatActivity {
             panelViewModel.insert(panel);
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String panel_data = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
-            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, -1);
-
+            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, DEFAULT_VALUE);
             if (id != -1) {
                 panelViewModel.update(new Panel(id, panel_data));
             } else {

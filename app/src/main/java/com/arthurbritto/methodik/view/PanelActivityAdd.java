@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
+import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_VALUE;
+
 /**
  * This class displays a screen where the user add a new Panel.
  * The PanelActivityAdd returns the entered Panel to the calling activity
@@ -63,7 +65,7 @@ public class PanelActivityAdd extends AppCompatActivity {
                     // Put the new panel in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, panel);
                     if (extras != null && extras.containsKey(EXTRA_DATA_ID)) {
-                        int id = extras.getInt(EXTRA_DATA_ID, -1);
+                        int id = extras.getInt(EXTRA_DATA_ID, DEFAULT_VALUE);
                         if (id != -1) {
                             replyIntent.putExtra(EXTRA_REPLY_ID, id);
                         }
