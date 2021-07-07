@@ -11,14 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
-import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
-
 /**
  * This class displays a screen where the user add a new Task.
  * The TaskActivityAdd returns the entered Panel to the calling activity
  * (TaskListActivity), which then stores the new Task and updates the list.
  */
 public class TaskActivityAdd extends AppCompatActivity {
+
+    public static final String EXTRA_TASK_NAME = "extra_task_name";
 
     private EditText addTaskView;
 

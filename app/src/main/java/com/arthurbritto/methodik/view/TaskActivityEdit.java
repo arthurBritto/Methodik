@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,9 @@ import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
  */
 public class TaskActivityEdit extends AppCompatActivity {
 
+    public static final String EXTRA_REPLY = "com.arthurbritto.methodik.REPLY";
+    public static final String EXTRA_REPLY_ID = "com.arthurbritto.methodik.REPLY_ID";
+
     private EditText editTaskView;
     private int taskId;
 
@@ -36,12 +40,12 @@ public class TaskActivityEdit extends AppCompatActivity {
 
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
-            String task = extras.getString(EXTRA_TASK_NAME, "");
+            String taskName = extras.getString(EXTRA_TASK_NAME, "");
             int taskId = extras.getInt(EXTRA_TASK_ID, DEFAULT_VALUE);
             this.taskId = taskId;
-            if (!task.isEmpty()) {
-                editTaskView.setText(task);
-                editTaskView.setSelection(task.length());
+            if (!taskName.isEmpty()) {
+                editTaskView.setText(taskName);
+                editTaskView.setSelection(taskName.length());
                 editTaskView.requestFocus();
             }
         } // Otherwise, start with empty fields.
@@ -63,8 +67,9 @@ public class TaskActivityEdit extends AppCompatActivity {
                     String taskName = editTaskView.getText().toString();
                     // Put the new task in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_TASK_NAME, taskName);
-                    // Set the result status to indicate success.
+                    System.out.println(taskName + ">>>> " + taskId);
                     replyIntent.putExtra(EXTRA_TASK_ID, taskId);
+                    // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();

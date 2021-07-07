@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.panel_created, Toast.LENGTH_LONG).show();
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String panel_data = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
-            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, -1);
+            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, DEFAULT_VALUE);
             panelViewModel.update(new Panel(id, panel_data));
             Toast.makeText(this, R.string.panel_updated, Toast.LENGTH_LONG).show();
         }

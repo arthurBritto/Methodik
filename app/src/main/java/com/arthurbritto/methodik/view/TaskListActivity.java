@@ -28,6 +28,7 @@ public class TaskListActivity extends AppCompatActivity {
 
     public static final int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_TASK_ACTIVITY_REQUEST_CODE = 2;
+
     public static final String EXTRA_TASK_NAME = "extra_task_name";
     public static final String EXTRA_TASK_ID = "extra_task_id";
 
@@ -115,30 +116,9 @@ public class TaskListActivity extends AppCompatActivity {
         });
     }
 
-    // The options menu has a single item "Clear all data now"
-    // that deletes all the entries in the database.
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, as long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        // no inspection Simplifiable If Statement
-        if (id == R.id.clear_data) {
-            // Add a toast just for confirmation
-            Toast.makeText(this, R.string.clear_data_toast_text, Toast.LENGTH_LONG).show();
-
-            // Delete the existing data.
-            //taskViewModel.deleteAll();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     /**
-     * When the user enters a new task in the TaskActivityAdd,
-     * that activity returns the result to this activity.
+     * When the user enters a new task in the TaskActivityAdd or
+     * TaskActivityEdit, that activity returns the result to this activity.
      * If the user entered a new task, save it in the database.
      *
      * @param requestCode ID for the request
@@ -165,10 +145,19 @@ public class TaskListActivity extends AppCompatActivity {
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String taskNewName = data.getStringExtra(EXTRA_TASK_NAME);
             int taskId = data.getIntExtra(EXTRA_TASK_ID, DEFAULT_VALUE);
-            taskViewModel.update(new Task(taskNewName, extraPanelId));
-            Toast.makeText(this, R.string.unable_to_update, Toast.LENGTH_LONG).show();
+            taskViewModel.update(new Task(taskId, taskNewName, extraPanelId));
+            Toast.makeText(this, R.string.task_updated, Toast.LENGTH_LONG).show();
+            // Save the data
+            taskViewModel.getTasksByPanel(extraPanelId, new TaskRepository.GetTasksResult() {
+                @Override
+                public void onTasksLoaded(List<Task> tasks) {
+                    // update the cached copy of the tasks in the adapter.
+                    adapter.updateTasks(tasks);
+                }
+            });
+
         } else {
-            Toast.makeText(this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.unable_to_update, Toast.LENGTH_LONG).show();
         }
     }
 
