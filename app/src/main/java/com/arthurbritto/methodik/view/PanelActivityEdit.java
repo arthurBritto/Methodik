@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
+import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
 
@@ -37,10 +38,10 @@ public class PanelActivityEdit extends AppCompatActivity {
 
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
-            String panel = extras.getString(EXTRA_PANEL_NAME, "");
-            if (!panel.isEmpty()) {
-                editPanelView.setText(panel);
-                editPanelView.setSelection(panel.length());
+            String panelName = extras.getString(EXTRA_PANEL_NAME, "");
+            if (!panelName.isEmpty()) {
+                editPanelView.setText(panelName);
+                editPanelView.setSelection(panelName.length());
                 editPanelView.requestFocus();
             }
         } // Otherwise, start with empty fields.
@@ -58,14 +59,12 @@ public class PanelActivityEdit extends AppCompatActivity {
                     // No panel was entered, set the result accordingly.
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-                    // Get the new panel that the user entered.
-                    String panel = editPanelView.getText().toString();
-                    // Put the new panel in the extras for the reply Intent.
-                    replyIntent.putExtra(EXTRA_REPLY, panel);
-                    int id = extras.getInt(EXTRA_PANEL_ID, -1);
-                    if (id != -1) {
-                        replyIntent.putExtra(EXTRA_REPLY_ID, id);
-                    }
+                    // Get the new panelName that the user entered.
+                    String panelName = editPanelView.getText().toString();
+                    // Put the new panelName in the extras for the reply Intent.
+                    replyIntent.putExtra(EXTRA_REPLY, panelName);
+                    int panelId = extras.getInt(EXTRA_PANEL_ID, DEFAULT_ID);
+                    replyIntent.putExtra(EXTRA_REPLY_ID, panelId);
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);
                 }

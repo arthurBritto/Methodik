@@ -11,10 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
-import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_ID_UPDATE_TASK;
-import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_NAME_UPDATE_TASK;
+import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
+import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_ID;
+import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
 
 /**
  * This class displays a screen where the user edit a task.
@@ -27,6 +26,7 @@ public class TaskActivityEdit extends AppCompatActivity {
     public static final String EXTRA_REPLY_ID = "com.arthurbritto.methodik.REPLY_ID";
 
     private EditText editTaskView;
+    private int taskId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,12 @@ public class TaskActivityEdit extends AppCompatActivity {
 
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
-            String task = extras.getString(EXTRA_NAME_UPDATE_TASK, "");
-            if (!task.isEmpty()) {
-                editTaskView.setText(task);
-                editTaskView.setSelection(task.length());
+            String taskName = extras.getString(EXTRA_TASK_NAME, "");
+            int taskId = extras.getInt(EXTRA_TASK_ID, DEFAULT_ID);
+            this.taskId = taskId;
+            if (!taskName.isEmpty()) {
+                editTaskView.setText(taskName);
+                editTaskView.setSelection(taskName.length());
                 editTaskView.requestFocus();
             }
         } // Otherwise, start with empty fields.
@@ -61,13 +63,10 @@ public class TaskActivityEdit extends AppCompatActivity {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     // Get the new task that the user entered.
-                    String task = editTaskView.getText().toString();
+                    String taskName = editTaskView.getText().toString();
                     // Put the new task in the extras for the reply Intent.
-                    replyIntent.putExtra(EXTRA_REPLY, task);
-                    int id = extras.getInt(EXTRA_ID_UPDATE_TASK, -1);
-                    if (id != -1) {
-                        replyIntent.putExtra(EXTRA_REPLY_ID, id);
-                    }
+                    replyIntent.putExtra(EXTRA_TASK_NAME, taskName);
+                    replyIntent.putExtra(EXTRA_TASK_ID, taskId);
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);
                 }

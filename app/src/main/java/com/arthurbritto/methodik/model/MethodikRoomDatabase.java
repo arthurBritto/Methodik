@@ -73,23 +73,25 @@ public abstract class MethodikRoomDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
 
-            for (int i = 0; i <= panels.length - 1; i++) {
-                Panel panel = new Panel(panels[i]);
-                panelDao.insert(panel);
-            }
+            // Tasks in the second panel, Week TODO
+            if (taskDao.getAllTasksFromPanel(2) == null) {
+                for (int i = 0; i <= panels.length - 1; i++) {
+                    Panel panel = new Panel(panels[i]);
+                    panelDao.insert(panel);
+                }
 
-            int panelIdWeek = 2; // Tasks in the second panel, Week TODO
-            for (int i = 0; i <= weekTODOtasks.length - 1; i++) {
-                Task task = new Task(weekTODOtasks[i], panelIdWeek);
-                taskDao.insert(task);
-            }
+                int panelIdWeek = 2; // Tasks in the second panel, Week TODO
+                for (int i = 0; i <= weekTODOtasks.length - 1; i++) {
+                    Task task = new Task(weekTODOtasks[i], panelIdWeek);
+                    taskDao.insert(task);
+                }
 
-            int panelIdPoems = 3; // Tasks in the third panel, Poems
-            for (int i = 0; i <= poemsTask.length - 1; i++) {
-                Task task = new Task(poemsTask[i], panelIdPoems);
-                taskDao.insert(task);
+                int panelIdPoems = 3; // Tasks in the third panel, Poems
+                for (int i = 0; i <= poemsTask.length - 1; i++) {
+                    Task task = new Task(poemsTask[i], panelIdPoems);
+                    taskDao.insert(task);
+                }
             }
-
             return null;
         }
     }
