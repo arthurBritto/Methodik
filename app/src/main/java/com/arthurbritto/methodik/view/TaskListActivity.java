@@ -2,7 +2,6 @@ package com.arthurbritto.methodik.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_VALUE;
+import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
 
@@ -42,7 +41,7 @@ public class TaskListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
-        int extraPanelIdIntent = getIntent().getIntExtra(EXTRA_PANEL_ID, DEFAULT_VALUE);
+        int extraPanelIdIntent = getIntent().getIntExtra(EXTRA_PANEL_ID, DEFAULT_ID);
         this.extraPanelId = extraPanelIdIntent;
         String extraPanelName = getIntent().getStringExtra(EXTRA_PANEL_NAME);
         panelName = (TextView) findViewById(R.id.textViewPanelName);
@@ -144,7 +143,7 @@ public class TaskListActivity extends AppCompatActivity {
 
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String taskNewName = data.getStringExtra(EXTRA_TASK_NAME);
-            int taskId = data.getIntExtra(EXTRA_TASK_ID, DEFAULT_VALUE);
+            int taskId = data.getIntExtra(EXTRA_TASK_ID, DEFAULT_ID);
             taskViewModel.update(new Task(taskId, taskNewName, extraPanelId));
             Toast.makeText(this, R.string.task_updated, Toast.LENGTH_LONG).show();
             // Save the data

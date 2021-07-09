@@ -6,13 +6,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
-import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_VALUE;
+import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
 import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_ID;
 import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
 
@@ -41,7 +40,7 @@ public class TaskActivityEdit extends AppCompatActivity {
         // If we are passed content, fill it in for the user to edit.
         if (extras != null) {
             String taskName = extras.getString(EXTRA_TASK_NAME, "");
-            int taskId = extras.getInt(EXTRA_TASK_ID, DEFAULT_VALUE);
+            int taskId = extras.getInt(EXTRA_TASK_ID, DEFAULT_ID);
             this.taskId = taskId;
             if (!taskName.isEmpty()) {
                 editTaskView.setText(taskName);
@@ -67,7 +66,6 @@ public class TaskActivityEdit extends AppCompatActivity {
                     String taskName = editTaskView.getText().toString();
                     // Put the new task in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_TASK_NAME, taskName);
-                    System.out.println(taskName + ">>>> " + taskId);
                     replyIntent.putExtra(EXTRA_TASK_ID, taskId);
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);

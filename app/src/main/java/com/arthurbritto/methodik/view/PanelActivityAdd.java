@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
-import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_VALUE;
-
 /**
  * This class displays a screen where the user add a new Panel.
  * The PanelActivityAdd returns the entered Panel to the calling activity

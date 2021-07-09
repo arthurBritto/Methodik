@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arthurbritto.methodik.R;
 
-import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_VALUE;
+import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
 
@@ -63,7 +63,7 @@ public class PanelActivityEdit extends AppCompatActivity {
                     String panelName = editPanelView.getText().toString();
                     // Put the new panelName in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, panelName);
-                    int panelId = extras.getInt(EXTRA_PANEL_ID, DEFAULT_VALUE);
+                    int panelId = extras.getInt(EXTRA_PANEL_ID, DEFAULT_ID);
                     replyIntent.putExtra(EXTRA_REPLY_ID, panelId);
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);
