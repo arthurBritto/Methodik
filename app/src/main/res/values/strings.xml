@@ -27,4 +27,6 @@
     <string name="panel_updated">Panel Updated</string>
     <string name="panel_created">List Created</string>
     <string name="task_updated">Task Updated</string>
+    <string name="importance_rate">Importance Rate</string>
+    <string name="choose_preference_color">Preference Color</string>
 </resources>
