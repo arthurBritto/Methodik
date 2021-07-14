@@ -26,6 +26,6 @@ public interface TaskDao {
     @Update
     void update(Task... tasks);
 
-    @Query("SELECT * FROM task WHERE panel_id =:panelId ORDER BY name ASC")
+    @Query("SELECT * FROM task WHERE panel_id =:panelId ORDER BY color, name ASC")
     List<Task> getAllTasksFromPanel(int panelId);
 }
