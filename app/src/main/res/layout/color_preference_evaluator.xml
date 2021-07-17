@@ -1,56 +1,48 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/color_preference_bar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/textView"
         style="@style/text_view_style"
         android:layout_width="match_parent"
-        android:layout_height="66dp"
+        android:layout_height="@dimen/view_height"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="3dp"
-        tools:text="@string/choose_preference_color" />
-    />
+        android:text="@string/choose_preference_color"/>
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="26dp"
-        android:layout_height="63dp"
-        android:layout_marginRight="4dp"
-        android:shadowColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/red_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginEnd="@dimen/margin_right"
+        android:tag="1"
+        android:backgroundTint="@color/red_background"
+        android:onClick="changeBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="26dp"
-        android:layout_height="63dp"
-        android:shadowColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.341"
-        app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:id="@+id/green_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginEnd="@dimen/margin_right"
+        android:tag="2"
+        android:backgroundTint="@color/green_background"
+        android:onClick="changeBackground"
+        app:layout_constraintEnd_toStartOf="@+id/red_button"
+        tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button6"
-        android:layout_width="26dp"
-        android:layout_height="63dp"
-        android:shadowColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.831"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:id="@+id/blue_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginEnd="@dimen/margin_right"
+        android:tag="3"
+        android:backgroundTint="@color/blue_background"
+        android:onClick="changeBackground"
+        app:layout_constraintEnd_toStartOf="@+id/green_button"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

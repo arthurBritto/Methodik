@@ -8,17 +8,16 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="@dimen/view_height"
         android:theme="@style/Theme.Methodik.AppBarOverlay">
 
         <TextView
             android:id="@+id/textViewPanelName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
             android:text="@string/panel_name"
             android:textAlignment="center"
-            android:textSize="40dp" />
+            android:textSize="@dimen/text_size" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"

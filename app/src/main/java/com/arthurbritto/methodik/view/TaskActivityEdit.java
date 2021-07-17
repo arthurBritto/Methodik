@@ -33,7 +33,7 @@ public class TaskActivityEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_edit);
 
-        editTaskView = findViewById(R.id.edit_task);
+        editTaskView = findViewById(R.id.edit_task_text);
 
         final Bundle extras = getIntent().getExtras();
 
