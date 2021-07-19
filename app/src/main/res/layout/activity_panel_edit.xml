@@ -27,14 +27,14 @@
             android:id="@+id/edit_panel_text"
             style="@style/text_view_style"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/view_height"
+            android:layout_height="@dimen/text_view"
             tools:ignore="MissingConstraints"
             tools:text="placeholder text" />
 
         <View
             android:id="@+id/view_panel_color_change"
             android:layout_width="@dimen/view_width"
-            android:layout_height="@dimen/black_button"
+            android:layout_height="@dimen/view_height"
             android:layout_marginRight="@dimen/margin_right"
             android:background="@color/black"
             android:shadowColor="@color/black"

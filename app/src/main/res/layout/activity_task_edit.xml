@@ -29,18 +29,18 @@
             tools:ignore="MissingConstraints"
             tools:text="@string/placeholder_text" />
 
-        <Button
-            android:id="@+id/button_panel_color_change"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
+        <View
+            android:id="@+id/view_task_color_change"
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_height"
             android:layout_marginRight="@dimen/margin_right"
             android:shadowColor="@color/black"
+            android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/edit_task_text"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button

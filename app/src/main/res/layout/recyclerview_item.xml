@@ -11,16 +11,16 @@
         android:id="@+id/textView"
         style="@style/text_view_style"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/view_height"
+        android:layout_height="@dimen/text_view"
         tools:ignore="MissingConstraints"
         tools:text="placeholder text" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="@dimen/button_width"
-        android:layout_height="@dimen/button_height"
+    <View
+        android:id="@+id/recycler_view_color"
+        android:layout_width="@dimen/view_width"
+        android:layout_height="@dimen/view_height"
         android:layout_marginRight="@dimen/margin_right"
-        android:shadowColor="@color/black"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
