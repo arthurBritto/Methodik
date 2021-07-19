@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +16,6 @@ import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_COLOR;
-import static java.lang.String.valueOf;
 
 /**
  * This class displays a screen where the user can edit a Panel.
@@ -52,7 +50,6 @@ public class PanelActivityEdit extends AppCompatActivity {
                 editPanelView.setText(panelName);
                 editPanelView.setSelection(panelName.length());
                 editPanelView.requestFocus();
-                Log.d("this nut >>>>>>>>", String.valueOf(buttonColor));
                 editColorView.setBackgroundColor(buttonColor);
             }
         } // Otherwise, start with empty fields.
@@ -72,10 +69,7 @@ public class PanelActivityEdit extends AppCompatActivity {
                 } else {
                     // Get the new panelName, color and panelId that the user entered.
                     String panelName = editPanelView.getText().toString();
-                    Log.d("this >>>>>>>>", String.valueOf(panelName));
-                    Log.d("this 1 >>>>>>>>", String.valueOf(viewColor));
                     int panelId = extras.getInt(EXTRA_PANEL_ID, DEFAULT_ID);
-                    Log.d("this 2 >>>>>>>>", String.valueOf(panelId));
 
                     // Put the new panelName in the extras for the reply Intent.
                     replyIntent.putExtra(EXTRA_REPLY, panelName);

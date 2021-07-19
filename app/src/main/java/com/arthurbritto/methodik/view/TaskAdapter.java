@@ -49,10 +49,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     /**
      * Associates a color to a task
      */
-    public int colorSelector(int colorId){
-        if(colorId == 1) return R.color.red_background;
-        else if(colorId == 2) return R.color.green_background;
-        else if(colorId == 3) return R.color.blue_background;
+    public int colorSelector(int colorId) {
+        if (colorId == 1) return R.color.red_background;
+        else if (colorId == 2) return R.color.green_background;
+        else if (colorId == 3) return R.color.blue_background;
         else return R.color.black; //default background
     }
 

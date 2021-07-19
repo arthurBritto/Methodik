@@ -10,17 +10,17 @@
         style="@style/text_view_style"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_height"
-        tools:ignore="MissingConstraints"
-        android:text="@string/choose_preference_color"/>
+        android:text="@string/choose_preference_color"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/red_button"
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="@dimen/margin_right"
-        android:tag="1"
         android:backgroundTint="@color/red_background"
         android:onClick="changeBackground"
+        android:tag="1"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -29,9 +29,9 @@
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="@dimen/margin_right"
-        android:tag="2"
         android:backgroundTint="@color/green_background"
         android:onClick="changeBackground"
+        android:tag="2"
         app:layout_constraintEnd_toStartOf="@+id/red_button"
         tools:ignore="MissingConstraints" />
 
@@ -40,9 +40,9 @@
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="@dimen/margin_right"
-        android:tag="3"
         android:backgroundTint="@color/blue_background"
         android:onClick="changeBackground"
+        android:tag="3"
         app:layout_constraintEnd_toStartOf="@+id/green_button"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

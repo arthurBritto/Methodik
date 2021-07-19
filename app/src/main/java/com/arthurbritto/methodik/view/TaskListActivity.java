@@ -19,8 +19,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
-import static com.arthurbritto.methodik.view.MainActivity.EXTRA_COLOR;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
 

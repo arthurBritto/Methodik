@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the PanelViewModel.
         panelViewModel = ViewModelProviders.of(this).get(PanelViewModel.class);
-        // Get all the lists from the database
-        // and associate them to the adapter.
+        // Get all the lists from the database and associate them to the adapter.
         panelViewModel.getAllLists().observe(this, new Observer<List<Panel>>() {
             @Override
             public void onChanged(List<Panel> panels) {
@@ -71,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Add the functionality to swipe items in the
-        // RecyclerView to delete the swiped item.
+        // Add the functionality to swipe items in the RecyclerView to delete the swiped item.
         ItemTouchHelper helper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0,
                         ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -106,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(View v, int position) {
                 Panel panel = adapter.getPanelAtPosition(position);
                 launchTaskListActivity(panel);
+
             }
 
             @Override
@@ -177,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE);
     }
 
+    /**
+     * Handles the onItemClick and send to the the panel task List page.
+     */
     public void launchPanelActivity(Panel panel) {
         Intent intent = new Intent(this, PanelActivityEdit.class);
         intent.putExtra(EXTRA_PANEL_NAME, panel.getName());
