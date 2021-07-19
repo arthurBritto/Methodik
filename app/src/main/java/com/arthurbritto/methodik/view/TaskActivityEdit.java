@@ -1,6 +1,7 @@
 package com.arthurbritto.methodik.view;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.arthurbritto.methodik.R;
 
 import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
+import static com.arthurbritto.methodik.view.MainActivity.EXTRA_COLOR;
 import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_ID;
 import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
 
@@ -22,10 +24,13 @@ import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
  */
 public class TaskActivityEdit extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY = "com.arthurbritto.methodik.REPLY";
-    public static final String EXTRA_REPLY_ID = "com.arthurbritto.methodik.REPLY_ID";
+    public static final String EXTRA_REPLY_VIEW_COLOR = "com.arthurbritto.methodik.REPLY_VIEW_COLOR";
+    public static final String EXTRA_REPLY_NAME = "extra_reply_name";
+    public static final String EXTRA_REPLY_TASK_ID = "extra_reply_task_id";
 
     private EditText editTaskView;
+    private View editColorView;
+    private int viewColor;
     private int taskId;
 
     @Override
@@ -34,6 +39,7 @@ public class TaskActivityEdit extends AppCompatActivity {
         setContentView(R.layout.activity_task_edit);
 
         editTaskView = findViewById(R.id.edit_task_text);
+        editColorView = findViewById(R.id.view_task_color_change);
 
         final Bundle extras = getIntent().getExtras();
 
@@ -41,11 +47,13 @@ public class TaskActivityEdit extends AppCompatActivity {
         if (extras != null) {
             String taskName = extras.getString(EXTRA_TASK_NAME, "");
             int taskId = extras.getInt(EXTRA_TASK_ID, DEFAULT_ID);
+            int buttonColor = extras.getInt(EXTRA_COLOR, DEFAULT_ID);
             this.taskId = taskId;
             if (!taskName.isEmpty()) {
                 editTaskView.setText(taskName);
                 editTaskView.setSelection(taskName.length());
                 editTaskView.requestFocus();
+                editColorView.setBackgroundColor(buttonColor);
             }
         } // Otherwise, start with empty fields.
 
@@ -65,14 +73,26 @@ public class TaskActivityEdit extends AppCompatActivity {
                     // Get the new task that the user entered.
                     String taskName = editTaskView.getText().toString();
                     // Put the new task in the extras for the reply Intent.
-                    replyIntent.putExtra(EXTRA_TASK_NAME, taskName);
-                    replyIntent.putExtra(EXTRA_TASK_ID, taskId);
+                    replyIntent.putExtra(EXTRA_REPLY_NAME, taskName);
+                    replyIntent.putExtra(EXTRA_REPLY_VIEW_COLOR, viewColor);
+                    replyIntent.putExtra(EXTRA_REPLY_TASK_ID, taskId);
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();
             }
         });
+    }
+
+    /**
+     * Handles the onClick for the background color buttons. Gets the background
+     * color of the button that was clicked, and sets the button on the
+     * Edit text to that color.
+     */
+    public void changeBackground(View view) {
+        Drawable color = view.getBackground();
+        editColorView.setBackground(color);
+        viewColor = Integer.parseInt((String) view.getTag());
     }
 }
 

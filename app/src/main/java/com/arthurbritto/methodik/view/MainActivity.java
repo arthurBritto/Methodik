@@ -21,16 +21,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_PANEL_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_PANEL_ACTIVITY_REQUEST_CODE = 2;
     public static final int SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE = 3;
+
     public static final int DEFAULT_ID = -1;
 
     public static final String EXTRA_PANEL_NAME = "extra_panel_name";
     public static final String EXTRA_PANEL_ID = "extra_panel_id";
+    public static final String EXTRA_COLOR = "extra_color";
 
     private PanelViewModel panelViewModel;
 
@@ -157,13 +158,18 @@ public class MainActivity extends AppCompatActivity {
             panelViewModel.insert(panel);
             Toast.makeText(this, R.string.panel_created, Toast.LENGTH_LONG).show();
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            String panel_data = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
+            String panelData = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
             int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, DEFAULT_ID);
-            panelViewModel.update(new Panel(id, panel_data));
+            int colorId = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_VIEW_COLOR, DEFAULT_ID);
+            panelViewModel.update(new Panel(id, panelData, colorId));
             Toast.makeText(this, R.string.panel_updated, Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Handles the onItemLongClick and send to the edition page.
+     * in the app, always when you hold a task or panel you edit them.
+     */
     public void launchTaskListActivity(Panel panel) {
         Intent intent = new Intent(this, TaskListActivity.class);
         intent.putExtra(EXTRA_PANEL_NAME, panel.getName());
@@ -175,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PanelActivityEdit.class);
         intent.putExtra(EXTRA_PANEL_NAME, panel.getName());
         intent.putExtra(EXTRA_PANEL_ID, panel.getId());
+        intent.putExtra(EXTRA_COLOR, panel.getColor());
         startActivityForResult(intent, UPDATE_PANEL_ACTIVITY_REQUEST_CODE);
     }
 }
