@@ -1,11 +1,13 @@
 package com.arthurbritto.methodik.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arthurbritto.methodik.R;
@@ -42,7 +44,18 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         if (panels != null) {
             Panel current = panels.get(position);
             holder.panelItemView.setText(current.getName());
+            holder.panelViewColor.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), colorSelector(current.getColor())));
         }
+    }
+
+    /**
+     * Associates a color to a panel
+     */
+    public int colorSelector(int colorId){
+        if(colorId == 1) return R.color.red_background;
+        else if(colorId == 2) return R.color.green_background;
+        else if(colorId == 3) return R.color.blue_background;
+        else return R.color.black; //default background
     }
 
     /**
@@ -76,10 +89,12 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
 
     class PanelViewHolder extends RecyclerView.ViewHolder {
         private final TextView panelItemView;
+        private final View panelViewColor;
 
         private PanelViewHolder(View itemView) {
             super(itemView);
             panelItemView = itemView.findViewById(R.id.textView);
+            panelViewColor = itemView.findViewById(R.id.recycler_view_color);
             itemView.setOnClickListener(view -> clickListener.onItemClick(view, getAdapterPosition()));
             itemView.setOnLongClickListener(view -> {
                 clickListener.onItemLongClick(view, getAdapterPosition());
