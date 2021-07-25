@@ -14,6 +14,8 @@ import com.arthurbritto.methodik.model.Task;
 
 import java.util.List;
 
+import static com.arthurbritto.methodik.model.Utils.colorSelector;
+
 /**
  * Adapter for the RecyclerView that displays a tasks of Tasklists.
  */
@@ -44,16 +46,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             holder.taskItemView.setText(current.getName());
             holder.taskViewColor.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), colorSelector(current.getColor())));
         }
-    }
-
-    /**
-     * Associates a color to a task
-     */
-    public int colorSelector(int colorId) {
-        if (colorId == 1) return R.color.red_background;
-        else if (colorId == 2) return R.color.green_background;
-        else if (colorId == 3) return R.color.blue_background;
-        else return R.color.black; //default background
     }
 
     /**

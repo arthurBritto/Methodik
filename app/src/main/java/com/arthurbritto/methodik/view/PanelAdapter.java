@@ -14,6 +14,8 @@ import com.arthurbritto.methodik.model.Panel;
 
 import java.util.List;
 
+import static com.arthurbritto.methodik.model.Utils.colorSelector;
+
 /**
  * Adapter for the RecyclerView that displays a Panel of lists.
  */
@@ -46,16 +48,6 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
             holder.panelItemView.setText(current.getName());
             holder.panelViewColor.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), colorSelector(current.getColor())));
         }
-    }
-
-    /**
-     * Associates a color to a panel
-     */
-    public int colorSelector(int colorId) {
-        if (colorId == 1) return R.color.red_background;
-        else if (colorId == 2) return R.color.green_background;
-        else if (colorId == 3) return R.color.blue_background;
-        else return R.color.black; //default background
     }
 
     /**
