@@ -25,7 +25,6 @@ public class Task {
     @NonNull
     private String name;
 
-    @NonNull
     private int color;
 
     @NonNull

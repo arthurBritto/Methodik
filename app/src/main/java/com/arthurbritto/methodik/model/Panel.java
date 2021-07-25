@@ -16,8 +16,7 @@ public class Panel {
 
     @NonNull
     private String name;
-
-    @NonNull
+    
     private int color;
 
     public Panel(@NonNull String name) {
