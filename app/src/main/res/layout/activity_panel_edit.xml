@@ -56,5 +56,3 @@
     <include layout="@layout/color_preference_evaluator" />
 
 </LinearLayout>
-
-
