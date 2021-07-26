@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_NAME;
 
@@ -26,8 +27,6 @@ public class TaskListActivity extends AppCompatActivity {
 
     public static final int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_TASK_ACTIVITY_REQUEST_CODE = 2;
-
-    public static final int DEFAULT_ID = -1;
 
     public static final String EXTRA_TASK_NAME = "extra_task_name";
     public static final String EXTRA_TASK_ID = "extra_task_id";

@@ -50,7 +50,6 @@ public class PanelActivityEdit extends AppCompatActivity {
                 editPanelView.setText(panelName);
                 editPanelView.setSelection(panelName.length());
                 editPanelView.requestFocus();
-                editColorView.setBackgroundColor(buttonColor);
             }
         } // Otherwise, start with empty fields.
 

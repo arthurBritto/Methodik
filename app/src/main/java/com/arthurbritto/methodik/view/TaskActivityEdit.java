@@ -53,7 +53,6 @@ public class TaskActivityEdit extends AppCompatActivity {
                 editTaskView.setText(taskName);
                 editTaskView.setSelection(taskName.length());
                 editTaskView.requestFocus();
-                editColorView.setBackgroundColor(buttonColor);
             }
         } // Otherwise, start with empty fields.
 
