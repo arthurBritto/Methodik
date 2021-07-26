@@ -24,10 +24,10 @@ import static com.arthurbritto.methodik.view.MainActivity.EXTRA_COLOR;
  */
 public class PanelActivityEdit extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY = "com.arthurbritto.methodik.REPLY";
-    public static final String EXTRA_REPLY_ID = "com.arthurbritto.methodik.REPLY_ID";
-    public static final String EXTRA_REPLY_VIEW_COLOR = "com.arthurbritto.methodik.REPLY_VIEW_COLOR";
-
+    public static final String EXTRA_REPLY_PANEL_EDITED = "extra_reply_panel_edited";
+    public static final String EXTRA_REPLY_PANEL_ID = "extra_reply_panel_id";
+    public static final String EXTRA_REPLY_VIEW_COLOR = "extra_reply_view_color";
+    
     private EditText editPanelView;
     private View editColorView;
     private int viewColor;
@@ -70,11 +70,10 @@ public class PanelActivityEdit extends AppCompatActivity {
                     // Get the new panelName, color and panelId that the user entered.
                     String panelName = editPanelView.getText().toString();
                     int panelId = extras.getInt(EXTRA_PANEL_ID, DEFAULT_ID);
-
                     // Put the new panelName in the extras for the reply Intent.
-                    replyIntent.putExtra(EXTRA_REPLY, panelName);
+                    replyIntent.putExtra(EXTRA_REPLY_PANEL_EDITED, panelName);
                     replyIntent.putExtra(EXTRA_REPLY_VIEW_COLOR, viewColor);
-                    replyIntent.putExtra(EXTRA_REPLY_ID, panelId);
+                    replyIntent.putExtra(EXTRA_REPLY_PANEL_ID, panelId);
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);
                 }

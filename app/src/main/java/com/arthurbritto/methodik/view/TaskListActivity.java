@@ -144,7 +144,7 @@ public class TaskListActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.add_new_task, Toast.LENGTH_LONG).show();
 
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            String taskNewName = data.getStringExtra(TaskActivityEdit.EXTRA_REPLY_NAME);
+            String taskNewName = data.getStringExtra(TaskActivityEdit.EXTRA_REPLY_TASK_EDITED);
             int taskId = data.getIntExtra(TaskActivityEdit.EXTRA_REPLY_TASK_ID, DEFAULT_ID);
             int colorId = data.getIntExtra(TaskActivityEdit.EXTRA_REPLY_VIEW_COLOR, DEFAULT_ID);
             taskViewModel.update(new Task(taskId, taskNewName, extraPanelId, colorId));

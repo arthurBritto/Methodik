@@ -24,9 +24,9 @@ import static com.arthurbritto.methodik.view.TaskListActivity.EXTRA_TASK_NAME;
  */
 public class TaskActivityEdit extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY_VIEW_COLOR = "com.arthurbritto.methodik.REPLY_VIEW_COLOR";
-    public static final String EXTRA_REPLY_NAME = "extra_reply_name";
+    public static final String EXTRA_REPLY_TASK_EDITED = "extra_reply_task_edited";
     public static final String EXTRA_REPLY_TASK_ID = "extra_reply_task_id";
+    public static final String EXTRA_REPLY_VIEW_COLOR = "extra_reply_view_color";
 
     private EditText editTaskView;
     private View editColorView;
@@ -73,7 +73,7 @@ public class TaskActivityEdit extends AppCompatActivity {
                     // Get the new task that the user entered.
                     String taskName = editTaskView.getText().toString();
                     // Put the new task in the extras for the reply Intent.
-                    replyIntent.putExtra(EXTRA_REPLY_NAME, taskName);
+                    replyIntent.putExtra(EXTRA_REPLY_TASK_EDITED, taskName);
                     replyIntent.putExtra(EXTRA_REPLY_VIEW_COLOR, viewColor);
                     replyIntent.putExtra(EXTRA_REPLY_TASK_ID, taskId);
                     // Set the result status to indicate success.

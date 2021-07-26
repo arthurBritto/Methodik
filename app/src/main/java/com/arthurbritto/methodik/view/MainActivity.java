@@ -152,15 +152,15 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Panel panel = new Panel(data.getStringExtra(PanelActivityAdd.EXTRA_REPLY));
+            Panel panel = new Panel(data.getStringExtra(PanelActivityAdd.EXTRA_REPLY_NEW_PANEL));
             // Save the data.
             panelViewModel.insert(panel);
             Toast.makeText(this, R.string.panel_created, Toast.LENGTH_LONG).show();
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            String panelData = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
-            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, DEFAULT_ID);
-            int colorId = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_VIEW_COLOR, DEFAULT_ID);
-            panelViewModel.update(new Panel(id, panelData, colorId));
+            String panelNewName = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY_PANEL_EDITED);
+            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_PANEL_ID, DEFAULT_ID);
+            int colorId = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_COLOR_VIEW, DEFAULT_ID);
+            panelViewModel.update(new Panel(id, panelNewName, colorId));
             Toast.makeText(this, R.string.panel_updated, Toast.LENGTH_LONG).show();
         }
     }

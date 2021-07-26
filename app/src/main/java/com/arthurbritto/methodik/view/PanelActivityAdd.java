@@ -18,7 +18,7 @@ import com.arthurbritto.methodik.R;
  */
 public class PanelActivityAdd extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY = "com.example.android.Methodik.REPLY";
+    public static final String EXTRA_REPLY_NEW_PANEL = "extra_reply_new_panel";
 
     private EditText addPanelView;
 
@@ -44,7 +44,7 @@ public class PanelActivityAdd extends AppCompatActivity {
                     // Get the new panel that the user entered.
                     String panel = addPanelView.getText().toString();
                     // Put the new panel in the extras for the reply Intent.
-                    replyIntent.putExtra(EXTRA_REPLY, panel);
+                    replyIntent.putExtra(EXTRA_REPLY_NEW_PANEL, panel);
                     // Set the result status to indicate success.
                     setResult(RESULT_OK, replyIntent);
                 }
