@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         style="@style/text_view_style"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/text_view"
+        android:layout_height="@dimen/text_view_height"
         tools:ignore="MissingConstraints"
         tools:text="placeholder text" />
 

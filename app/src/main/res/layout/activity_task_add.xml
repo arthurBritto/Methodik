@@ -14,7 +14,7 @@
         android:inputType="text"
         android:text="@string/title_add_task"
         android:textColor="@color/colorPrimaryLight"
-        android:textSize="@dimen/title" />
+        android:textSize="@dimen/title_size" />
 
     <EditText
         android:id="@+id/add_task"

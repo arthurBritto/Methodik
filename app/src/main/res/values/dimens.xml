@@ -6,13 +6,10 @@
     <dimen name="app_padding">20dp</dimen>
 
     <dimen name="view_width">24dp</dimen>
-    <dimen name="view_height">64dp</dimen>
-    <dimen name="text_view">68dp</dimen>
+    <dimen name="view_height">62dp</dimen>
+    <dimen name="text_view_height">68dp</dimen>
 
-
-    <dimen name="text_size">40dp</dimen>
-    <dimen name="title">25sp</dimen>
-    <dimen name="recycler_view_padding">8dp</dimen>
-
+    <dimen name="text_size">40sp</dimen>
+    <dimen name="title_size">25sp</dimen>
+    <dimen name="recycler_view_padding">7dp</dimen>
 </resources>
-

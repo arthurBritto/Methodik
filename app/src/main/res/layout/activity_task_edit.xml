@@ -16,7 +16,7 @@
         android:inputType="text"
         android:text="@string/title_edit_task"
         android:textColor="@color/colorPrimaryLight"
-        android:textSize="@dimen/title" />
+        android:textSize="@dimen/title_size" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
