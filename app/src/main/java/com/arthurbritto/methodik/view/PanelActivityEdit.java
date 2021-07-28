@@ -1,17 +1,31 @@
 package com.arthurbritto.methodik.view;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.arthurbritto.methodik.R;
+import com.arthurbritto.methodik.databinding.ActivityMainBinding;
+import com.arthurbritto.methodik.databinding.ActivityPanelEditBinding;
+import com.arthurbritto.methodik.model.AlarmReceiver;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Calendar;
 
 import static com.arthurbritto.methodik.view.MainActivity.DEFAULT_ID;
 import static com.arthurbritto.methodik.view.MainActivity.EXTRA_PANEL_ID;
@@ -33,10 +47,23 @@ public class PanelActivityEdit extends AppCompatActivity {
     private View editColorView;
     private int viewColor;
 
+    private ActivityPanelEditBinding binding;
+    private MaterialTimePicker picker;
+    private Calendar calendar;
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
+    private int counter = 0;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_panel_edit);
+
+        binding = ActivityPanelEditBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
+
+        createNotificationChannel();
 
         editPanelView = findViewById(R.id.edit_panel_text);
         editColorView = findViewById(R.id.view_panel_color_change);
@@ -80,6 +107,96 @@ public class PanelActivityEdit extends AppCompatActivity {
                 finish();
             }
         });
+
+        binding.scheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showTimePicker();
+            }
+        });
+
+        binding.switchOnAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(counter <= 0){
+                    setAlarm();
+                    counter++;
+                }
+                else {
+                    cancelAlarm();
+                    counter = 0;
+                }
+            }
+        });
+    }
+
+    private void cancelAlarm() {
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        if (alarmManager == null) {
+            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        }
+
+        alarmManager.cancel(pendingIntent);
+        Toast.makeText(this, "Alarm Cancelled", Toast.LENGTH_SHORT).show();
+    }
+
+    private void setAlarm() {
+
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() , AlarmManager.INTERVAL_DAY, pendingIntent);
+        Toast.makeText(this, "Alarm set Successfully", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showTimePicker() {
+
+        picker = new MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText("Select Alarm Time")
+                .build();
+
+        picker.show(getSupportFragmentManager(), "ThisIsAnAlarm");
+
+        picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                binding.alarmTextView.setText("Alarm set to: " + picker.getHour() + ":" + picker.getMinute());
+
+                calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, picker.getHour());
+                calendar.set(Calendar.MINUTE, picker.getMinute());
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
+            }
+        });
+
+    }
+
+    /**
+     * Create a notification channel to be sent when the alarm in on
+     * Check if the SDK version, only runs on android Oreo or above
+     */
+    public void createNotificationChannel() {
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence channelName = "ThisIsAnAlarmchannel";
+            String description = "channel for the Alarm Manager";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("ThisIsAnAlarm", channelName, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
     }
 
     /**
