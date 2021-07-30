@@ -25,25 +25,25 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/green_button"
+        android:id="@+id/yellow_button"
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="@dimen/margin_right"
-        android:backgroundTint="@color/green_background"
+        android:backgroundTint="@color/yellow_background"
         android:onClick="changeBackground"
         android:tag="2"
         app:layout_constraintEnd_toStartOf="@+id/red_button"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/blue_button"
+        android:id="@+id/green_button"
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
         android:layout_marginEnd="@dimen/margin_right"
         android:backgroundTint="@color/blue_background"
         android:onClick="changeBackground"
         android:tag="3"
-        app:layout_constraintEnd_toStartOf="@+id/green_button"
+        app:layout_constraintEnd_toStartOf="@+id/yellow_button"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
