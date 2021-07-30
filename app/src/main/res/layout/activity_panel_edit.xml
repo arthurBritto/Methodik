@@ -55,4 +55,6 @@
 
     <include layout="@layout/color_preference_evaluator" />
 
+    <include layout="@layout/alarm_scheduler" />
+
 </LinearLayout>

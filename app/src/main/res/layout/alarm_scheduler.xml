@@ -3,46 +3,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/color_preference_bar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_between_views">
+
+    <View
+        android:layout_marginTop="@dimen/margin_between_views"
+        android:layout_marginBottom="@dimen/margin_between_views"
+        android:background="@color/colorPrimaryLight"
+        android:layout_height="@dimen/view_alarm_height"
+        android:paddingTop="@dimen/textview_set_alarm_padding"
+        android:layout_width="match_parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/alarm_view"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:background="@color/colorPrimaryLight"
-        android:padding="@dimen/app_padding"
+        android:layout_marginTop="@dimen/margin_between_views"
+        android:layout_height="@dimen/set_alarm_textview_height"
+        android:layout_margin="@dimen/textview_set_alarm_padding"
+        android:background="@color/colorScreenBackground"
+        android:paddingTop="@dimen/textview_set_alarm_padding"
         android:text="@string/set_alarm"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/black"
         android:textSize="@dimen/text_size_alarm"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        />
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/switch_width"
+        android:layout_height="@dimen/switch_height"
         android:onClick="turnOnAlarm"
         android:text="On"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_alarm_switch"
+        android:background="@color/colorPrimaryLight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/date_button"
         app:layout_constraintStart_toStartOf="@+id/alarm_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
         android:id="@+id/date_button"
-        android:layout_width="120dp"
-        android:layout_height="37dp"
-        android:onClick="showDatePicker"
+        android:layout_width="@dimen/alarm_button_width"
+        android:layout_height="@dimen/alarm_button_height"
+        android:onClick="showTimePickerDialog"
+        android:backgroundTint="@color/colorPrimaryLight"
+        android:textColor="@color/black"
         android:text="@string/set_time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/alarm_view"
         app:layout_constraintStart_toEndOf="@+id/switch1"
         app:layout_constraintTop_toTopOf="@+id/alarm_view"
-        app:layout_constraintVertical_bias="0.75"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.75" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

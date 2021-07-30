@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.arthurbritto.methodik.R;
 
@@ -91,5 +92,10 @@ public class PanelActivityEdit extends AppCompatActivity {
         editColorView.setBackground(color);
         viewColor = Integer.parseInt((String) view.getTag());
     }
+    public void showTimePickerDialog(View v) {
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
 }
 
