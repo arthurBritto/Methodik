@@ -31,5 +31,6 @@
     <string name="choose_preference_color">Preference Color</string>
     <string name="placeholder_text">Place holder</string>
     <string name="put_incial_data_text">Putting Random data!</string>
-
+    <string name="set_alarm">Set Alarm</string>
+    <string name="set_time">Schedule</string>
 </resources>
