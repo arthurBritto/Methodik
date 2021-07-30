@@ -25,6 +25,8 @@ public class Task {
     @NonNull
     private String name;
 
+    private int color;
+
     @NonNull
     @ColumnInfo(name = "panel_id")
     private int panelId;
@@ -39,6 +41,14 @@ public class Task {
         this.id = id;
         this.name = name;
         this.panelId = panelId;
+    }
+
+    @Ignore
+    public Task(int id, @NonNull String name, int panelId, int color) {
+        this.id = id;
+        this.name = name;
+        this.panelId = panelId;
+        this.color = color;
     }
 
     public int getId() {
@@ -59,5 +69,13 @@ public class Task {
 
     public int getPanelId() {
         return panelId;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

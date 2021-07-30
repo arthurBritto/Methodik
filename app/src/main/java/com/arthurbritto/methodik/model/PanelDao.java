@@ -29,7 +29,7 @@ public interface PanelDao {
     void deletePanel(Panel panel);
 
     @Transaction
-    @Query("SELECT * FROM panel ORDER BY name ASC")
+    @Query("SELECT * FROM panel ORDER BY color, name ASC")
     LiveData<List<Panel>> getAllPanels();
 
     @Update

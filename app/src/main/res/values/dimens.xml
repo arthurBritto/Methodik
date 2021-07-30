@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="title">25sp</dimen>
+    <dimen name="margin_between_views">16dp</dimen>
+    <dimen name="margin_right">12dp</dimen>
+    <dimen name="app_padding">20dp</dimen>
+
+    <dimen name="view_width">24dp</dimen>
+    <dimen name="view_height">62dp</dimen>
+    <dimen name="text_view_height">68dp</dimen>
+
+    <dimen name="text_size">40sp</dimen>
+    <dimen name="title_size">25sp</dimen>
+    <dimen name="recycler_view_padding">7dp</dimen>
+
 </resources>

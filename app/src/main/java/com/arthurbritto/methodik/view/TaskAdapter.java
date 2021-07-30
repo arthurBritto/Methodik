@@ -6,12 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arthurbritto.methodik.R;
 import com.arthurbritto.methodik.model.Task;
 
 import java.util.List;
+
+import static com.arthurbritto.methodik.model.Utils.colorSelector;
 
 /**
  * Adapter for the RecyclerView that displays a tasks of Tasklists.
@@ -41,6 +44,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         if (tasks != null) {
             Task current = tasks.get(position);
             holder.taskItemView.setText(current.getName());
+            holder.taskViewColor.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), colorSelector(current.getColor())));
         }
     }
 
@@ -75,10 +79,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     class TaskViewHolder extends RecyclerView.ViewHolder {
         private final TextView taskItemView;
+        private final View taskViewColor;
 
         private TaskViewHolder(View itemView) {
             super(itemView);
             taskItemView = itemView.findViewById(R.id.textView);
+            taskViewColor = itemView.findViewById(R.id.recycler_view_color);
             itemView.setOnLongClickListener(view -> {
                 clickListener.onItemLongClick(view, getAdapterPosition());
                 return true;

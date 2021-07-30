@@ -30,6 +30,7 @@ public class TaskListActivity extends AppCompatActivity {
 
     public static final String EXTRA_TASK_NAME = "extra_task_name";
     public static final String EXTRA_TASK_ID = "extra_task_id";
+    public static final String EXTRA_COLOR = "extra_color";
 
     private TaskViewModel taskViewModel;
     private int extraPanelId;
@@ -142,10 +143,10 @@ public class TaskListActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.add_new_task, Toast.LENGTH_LONG).show();
 
         } else if (requestCode == UPDATE_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            String taskNewName = data.getStringExtra(EXTRA_TASK_NAME);
-            int taskId = data.getIntExtra(EXTRA_TASK_ID, DEFAULT_ID);
-            taskViewModel.update(new Task(taskId, taskNewName, extraPanelId));
-            Toast.makeText(this, R.string.task_updated, Toast.LENGTH_LONG).show();
+            String taskNewName = data.getStringExtra(TaskActivityEdit.EXTRA_REPLY_TASK_EDITED);
+            int taskId = data.getIntExtra(TaskActivityEdit.EXTRA_REPLY_TASK_ID, DEFAULT_ID);
+            int colorId = data.getIntExtra(TaskActivityEdit.EXTRA_REPLY_VIEW_COLOR, DEFAULT_ID);
+            taskViewModel.update(new Task(taskId, taskNewName, extraPanelId, colorId));
             // Save the data
             taskViewModel.getTasksByPanel(extraPanelId, new TaskRepository.GetTasksResult() {
                 @Override
@@ -154,9 +155,7 @@ public class TaskListActivity extends AppCompatActivity {
                     adapter.updateTasks(tasks);
                 }
             });
-
-        } else {
-            Toast.makeText(this, R.string.unable_to_update, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.task_updated, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -164,6 +163,7 @@ public class TaskListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TaskActivityEdit.class);
         intent.putExtra(EXTRA_TASK_NAME, task.getName());
         intent.putExtra(EXTRA_TASK_ID, task.getId());
+        intent.putExtra(EXTRA_COLOR, task.getColor());
         startActivityForResult(intent, UPDATE_TASK_ACTIVITY_REQUEST_CODE);
     }
 }

@@ -16,6 +16,8 @@ public class Panel {
 
     @NonNull
     private String name;
+    
+    private int color;
 
     public Panel(@NonNull String name) {
         this.name = name;
@@ -29,6 +31,13 @@ public class Panel {
     public Panel(int id, @NonNull String name) {
         this.id = id;
         this.name = name;
+    }
+
+    @Ignore
+    public Panel(int id, @NonNull String name, int color) {
+        this.id = id;
+        this.name = name;
+        this.color = color;
     }
 
     public int getId() {
@@ -45,5 +54,13 @@ public class Panel {
 
     public void setName(@NonNull String name) {
         this.name = name;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorScreenBackground"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="@dimen/app_padding">
 
     <EditText
         android:id="@+id/addTextPanelName"
@@ -14,7 +14,7 @@
         android:inputType="text"
         android:text="@string/title_add_panel"
         android:textColor="@color/colorPrimaryLight"
-        android:textSize="@dimen/title" />
+        android:textSize="@dimen/title_size" />
 
     <EditText
         android:id="@+id/add_panel"
@@ -25,5 +25,7 @@
     <Button
         android:id="@+id/button_save"
         style="@style/button_style"
+        android:layout_marginTop="@dimen/margin_between_views"
         android:text="@string/button_save" />
+
 </LinearLayout>

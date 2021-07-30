@@ -21,16 +21,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_PANEL_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_PANEL_ACTIVITY_REQUEST_CODE = 2;
     public static final int SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE = 3;
+
     public static final int DEFAULT_ID = -1;
 
     public static final String EXTRA_PANEL_NAME = "extra_panel_name";
     public static final String EXTRA_PANEL_ID = "extra_panel_id";
+    public static final String EXTRA_COLOR = "extra_color";
 
     private PanelViewModel panelViewModel;
 
@@ -50,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the PanelViewModel.
         panelViewModel = ViewModelProviders.of(this).get(PanelViewModel.class);
-        // Get all the lists from the database
-        // and associate them to the adapter.
+        // Get all the lists from the database and associate them to the adapter.
         panelViewModel.getAllLists().observe(this, new Observer<List<Panel>>() {
             @Override
             public void onChanged(List<Panel> panels) {
@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Add the functionality to swipe items in the
-        // RecyclerView to delete the swiped item.
+        // Add the functionality to swipe items in the RecyclerView to delete the swiped item.
         ItemTouchHelper helper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0,
                         ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -105,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(View v, int position) {
                 Panel panel = adapter.getPanelAtPosition(position);
                 launchTaskListActivity(panel);
+
             }
 
             @Override
@@ -152,18 +152,23 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Panel panel = new Panel(data.getStringExtra(PanelActivityAdd.EXTRA_REPLY));
+            Panel panel = new Panel(data.getStringExtra(PanelActivityAdd.EXTRA_REPLY_NEW_PANEL));
             // Save the data.
             panelViewModel.insert(panel);
             Toast.makeText(this, R.string.panel_created, Toast.LENGTH_LONG).show();
         } else if (requestCode == UPDATE_PANEL_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            String panel_data = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY);
-            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_ID, DEFAULT_ID);
-            panelViewModel.update(new Panel(id, panel_data));
+            String panelNewName = data.getStringExtra(PanelActivityEdit.EXTRA_REPLY_PANEL_EDITED);
+            int id = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_PANEL_ID, DEFAULT_ID);
+            int colorId = data.getIntExtra(PanelActivityEdit.EXTRA_REPLY_COLOR_VIEW, DEFAULT_ID);
+            panelViewModel.update(new Panel(id, panelNewName, colorId));
             Toast.makeText(this, R.string.panel_updated, Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Handles the onItemLongClick and send to the edition page.
+     * in the app, always when you hold a task or panel you edit them.
+     */
     public void launchTaskListActivity(Panel panel) {
         Intent intent = new Intent(this, TaskListActivity.class);
         intent.putExtra(EXTRA_PANEL_NAME, panel.getName());
@@ -171,10 +176,14 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, SHOW_TASK_LIST_ACTIVITY_REQUEST_CODE);
     }
 
+    /**
+     * Handles the onItemClick and send to the the panel task List page.
+     */
     public void launchPanelActivity(Panel panel) {
         Intent intent = new Intent(this, PanelActivityEdit.class);
         intent.putExtra(EXTRA_PANEL_NAME, panel.getName());
         intent.putExtra(EXTRA_PANEL_ID, panel.getId());
+        intent.putExtra(EXTRA_COLOR, panel.getColor());
         startActivityForResult(intent, UPDATE_PANEL_ACTIVITY_REQUEST_CODE);
     }
 }

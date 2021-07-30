@@ -6,12 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arthurbritto.methodik.R;
 import com.arthurbritto.methodik.model.Panel;
 
 import java.util.List;
+
+import static com.arthurbritto.methodik.model.Utils.colorSelector;
 
 /**
  * Adapter for the RecyclerView that displays a Panel of lists.
@@ -20,6 +23,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
 
     public interface ClickListener {
         void onItemClick(View v, int position);
+
         void onItemLongClick(View v, int position);
     }
 
@@ -42,6 +46,7 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
         if (panels != null) {
             Panel current = panels.get(position);
             holder.panelItemView.setText(current.getName());
+            holder.panelViewColor.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), colorSelector(current.getColor())));
         }
     }
 
@@ -76,10 +81,12 @@ public class PanelAdapter extends RecyclerView.Adapter<PanelAdapter.PanelViewHol
 
     class PanelViewHolder extends RecyclerView.ViewHolder {
         private final TextView panelItemView;
+        private final View panelViewColor;
 
         private PanelViewHolder(View itemView) {
             super(itemView);
             panelItemView = itemView.findViewById(R.id.textView);
+            panelViewColor = itemView.findViewById(R.id.recycler_view_color);
             itemView.setOnClickListener(view -> clickListener.onItemClick(view, getAdapterPosition()));
             itemView.setOnLongClickListener(view -> {
                 clickListener.onItemLongClick(view, getAdapterPosition());
