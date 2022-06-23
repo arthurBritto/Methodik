@@ -60,9 +60,7 @@ public class PanelActivityEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityPanelEditBinding.inflate(getLayoutInflater());
-
         setContentView(binding.getRoot());
-
         createNotificationChannel();
 
         editPanelView = findViewById(R.id.edit_panel_text);
@@ -111,7 +109,6 @@ public class PanelActivityEdit extends AppCompatActivity {
         binding.scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 showTimePicker();
             }
         });
@@ -119,7 +116,6 @@ public class PanelActivityEdit extends AppCompatActivity {
         binding.switchOnAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(counter <= 0){
                     setAlarm();
                     counter++;
@@ -149,7 +145,7 @@ public class PanelActivityEdit extends AppCompatActivity {
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() , AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
         Toast.makeText(this, "Alarm set Successfully", Toast.LENGTH_SHORT).show();
     }
 

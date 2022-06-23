@@ -16,7 +16,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/alarm_view"
+        android:id="@+id/alarm_text_view"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/margin_between_views"
         android:layout_height="@dimen/set_alarm_textview_height"
@@ -36,33 +36,33 @@
         />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switch_on_alarm"
         android:layout_width="@dimen/switch_width"
         android:layout_height="@dimen/switch_height"
-        android:onClick="turnOnAlarm"
         android:text="On"
+        android:onClick="setAlarm"
         android:textAlignment="center"
         android:textSize="@dimen/text_size_alarm_switch"
-        android:background="@color/colorPrimaryLight"
+        android:background="@drawable/layout_recyclerview"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/date_button"
-        app:layout_constraintStart_toStartOf="@+id/alarm_view"
+        app:layout_constraintEnd_toStartOf="@+id/schedule_button"
+        app:layout_constraintStart_toStartOf="@+id/alarm_text_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
-        android:id="@+id/date_button"
+        android:id="@+id/schedule_button"
         android:layout_width="@dimen/alarm_button_width"
         android:layout_height="@dimen/alarm_button_height"
         android:onClick="showTimePickerDialog"
-        android:backgroundTint="@color/colorPrimaryLight"
+        android:background="@drawable/layout_recyclerview"
         android:textColor="@color/black"
         android:text="@string/set_time"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/alarm_view"
-        app:layout_constraintStart_toEndOf="@+id/switch1"
-        app:layout_constraintTop_toTopOf="@+id/alarm_view"
+        app:layout_constraintEnd_toEndOf="@+id/alarm_text_view"
+        app:layout_constraintStart_toEndOf="@+id/switch_on_alarm"
+        app:layout_constraintTop_toTopOf="@+id/alarm_text_view"
         app:layout_constraintVertical_bias="0.75" />
 
 

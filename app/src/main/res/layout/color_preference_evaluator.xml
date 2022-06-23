@@ -17,7 +17,7 @@
     <Button
         android:id="@+id/red_button"
         android:layout_width="@dimen/view_width"
-        android:layout_height="@dimen/view_height"
+        android:layout_height="@dimen/color_text_view"
         android:layout_marginEnd="@dimen/margin_right"
         android:backgroundTint="@color/red_background"
         android:onClick="changeBackground"
@@ -28,7 +28,7 @@
     <Button
         android:id="@+id/yellow_button"
         android:layout_width="@dimen/view_width"
-        android:layout_height="@dimen/view_height"
+        android:layout_height="@dimen/color_text_view"
         android:layout_marginEnd="@dimen/margin_right"
         android:backgroundTint="@color/yellow_background"
         android:onClick="changeBackground"
@@ -39,7 +39,7 @@
     <Button
         android:id="@+id/green_button"
         android:layout_width="@dimen/view_width"
-        android:layout_height="@dimen/view_height"
+        android:layout_height="@dimen/color_text_view"
         android:layout_marginEnd="@dimen/margin_right"
         android:backgroundTint="@color/blue_background"
         android:onClick="changeBackground"

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Methodik">
-        <activity android:name=".view.DestinationActivity"></activity>
+        <activity android:name=".view.DestinationAlarmActivity"></activity>
         <activity
             android:name=".view.MainActivity"
             android:theme="@style/Theme.Methodik.NoActionBar">
@@ -25,7 +25,10 @@
         <activity android:name=".view.TaskActivityEdit" />
         <activity android:name=".view.TaskActivityAdd" />
 
-        <receiver android:name=".model.AlarmReceiver" />
+        <receiver
+            android:name=".model.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

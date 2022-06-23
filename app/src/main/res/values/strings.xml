@@ -33,4 +33,6 @@
     <string name="put_incial_data_text">Putting Random data!</string>
     <string name="set_alarm">Set Alarm</string>
     <string name="set_time">Schedule</string>
+    <string name="alarm_message">This is an alarminho</string>
+    <string name="cancel_alarm">Cancel Alarm</string>
 </resources>

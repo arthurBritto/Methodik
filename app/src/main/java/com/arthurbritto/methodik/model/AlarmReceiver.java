@@ -1,6 +1,5 @@
 package com.arthurbritto.methodik.model;
 
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,14 +9,14 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.arthurbritto.methodik.R;
-import com.arthurbritto.methodik.view.DestinationActivity;
+import com.arthurbritto.methodik.view.DestinationAlarmActivity;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Intent i = new Intent(context, DestinationActivity.class);
+        Intent i = new Intent(context, DestinationAlarmActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,i,0);
 

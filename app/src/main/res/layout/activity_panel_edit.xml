@@ -34,7 +34,7 @@
         <View
             android:id="@+id/view_panel_color_change"
             android:layout_width="@dimen/view_width"
-            android:layout_height="@dimen/view_height"
+            android:layout_height="@dimen/button_view"
             android:layout_marginRight="@dimen/margin_right"
             android:background="@drawable/layout_button_recyclerview"
             app:layout_constraintBottom_toBottomOf="parent"

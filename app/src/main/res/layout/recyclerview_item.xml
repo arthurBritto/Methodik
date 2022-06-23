@@ -13,13 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/text_view_height"
         android:background="@drawable/layout_recyclerview"
+        android:textAlignment="gravity"
         tools:text="placeholder text"
         tools:ignore="MissingConstraints" />
 
     <View
         android:id="@+id/recycler_view_color"
         android:layout_width="@dimen/view_width"
+<<<<<<< Updated upstream
         android:layout_height="@dimen/text_view_height"
+=======
+        android:layout_height="@dimen/button_view"
+>>>>>>> Stashed changes
         android:layout_marginRight="@dimen/margin_right"
         android:background="@drawable/layout_button_recyclerview"
         app:layout_constraintBottom_toBottomOf="parent"
